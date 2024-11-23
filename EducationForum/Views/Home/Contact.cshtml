@@ -11,15 +11,15 @@
         <div class="bg-img" data-background="../assets/img/bg-img/page-header-bg.png"></div>
         <div class="overlay"></div>
         <div class="shapes">
-            <div class="shape shape-1"><img src="~/assets/img/shapes/page-header-shape-1.png" alt="shape"></div>
-            <div class="shape shape-2"><img src="~/assets/img/shapes/page-header-shape-2.png" alt="shape"></div>
-            <div class="shape shape-3"><img src="~/assets/img/shapes/page-header-shape-3.png" alt="shape"></div>
+            <div class="shape shape-1"><img src="~/assets/img/shapes/page-header-shape-1.png" alt="shape" loading="lazy"></div>
+            <div class="shape shape-2"><img src="~/assets/img/shapes/page-header-shape-2.png" alt="shape" loading="lazy"></div>
+            <div class="shape shape-3"><img src="~/assets/img/shapes/page-header-shape-3.png" alt="shape" loading="lazy"></div>
         </div>
     </div>
     <div class="container">
         <div class="page-header-content">
             <h1 class="title">Contact Us</h1>
-            <h4 class="sub-title"><a class="home" href="index.html">Home </a><span class="icon">/</span><a class="inner-page" href="contact.html"> Contact Us</a></h4>
+            <h4 class="sub-title"><a class="home" asp-controller="Home" asp-action="Index">Home </a><span class="icon">/</span><a class="inner-page" asp-controller="Home" asp-action="Contact"> Contact Us</a></h4>
         </div>
     </div>
 </section>
@@ -73,8 +73,8 @@
             <div class="col-lg-5 col-md-12">
                 <div class="contact-content">
                     <div class="contact-top">
-                        <h3 class="title">Office Information</h3>
-                        <p>Completely recapitalize 24/7 communities via standards compliant metrics whereas.</p>
+                        <h3 class="title">Institute Information</h3>
+                        @* <p>Completely recapitalize 24/7 communities via standards compliant metrics whereas.</p> *@
                     </div>
                     <div class="contact-list">
                         <div class="list-item">
@@ -83,8 +83,12 @@
                             </div>
                             <div class="content">
                                 <h4 class="title">Phone Number & Email</h4>
-                                <span><a href="tel:+65485965789">(+65) - 48596 - 5789</a></span>
-                                <span><a href="mailto:hello@edcare.com">hello@edcare.com</a></span>
+                                <span><a href="tel:+91812209 7882">+91 812 209 7882</a></span>
+                                <span>
+                                    <a href="mailto:princetonlearnersforum@gmail.com">
+                                        princetonlearnersforum@gmail.com
+                                    </a>
+                                </span>
                             </div>
                         </div>
                         <div class="list-item">
@@ -92,8 +96,11 @@
                                 <i class="fa-sharp fa-solid fa-location-dot"></i>
                             </div>
                             <div class="content">
-                                <h4 class="title">Our Office Address</h4>
-                                <p>2690 Hilton Street Victoria Road, <br>New York, Canada</p>
+                                <h4 class="title"> Address</h4>
+                                <p>
+                                    Millerpuram, Thoothukudi - 628008
+                                    <br>Tamil Nadu, India
+                                </p>
                             </div>
                         </div>
                         <div class="list-item">
@@ -101,7 +108,7 @@
                                 <i class="fa-sharp fa-solid fa-clock"></i>
                             </div>
                             <div class="content">
-                                <h4 class="title">Official Work Time</h4>
+                                <h4 class="title">Work Time</h4>
                                 <span>Monday - Friday: 09:00 - 20:00</span>
                                 <span>Sunday & Saturday: 10:30 - 22:00</span>
                             </div>

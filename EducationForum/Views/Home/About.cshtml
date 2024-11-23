@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "About";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -9,84 +8,188 @@
         <div class="bg-img" data-background="../assets/img/bg-img/page-header-bg.png"></div>
         <div class="overlay"></div>
         <div class="shapes">
-            <div class="shape shape-1"><img src="~/assets/img/shapes/page-header-shape-1.png" alt="shape"></div>
-            <div class="shape shape-2"><img src="~/assets/img/shapes/page-header-shape-2.png" alt="shape"></div>
-            <div class="shape shape-3"><img src="~/assets/img/shapes/page-header-shape-3.png" alt="shape"></div>
+            <div class="shape shape-1"><img src="~/assets/img/shapes/page-header-shape-1.png" alt="shape" loading="lazy"></div>
+            <div class="shape shape-2"><img src="~/assets/img/shapes/page-header-shape-2.png" alt="shape" loading="lazy"></div>
+            <div class="shape shape-3"><img src="~/assets/img/shapes/page-header-shape-3.png" alt="shape" loading="lazy"></div>
         </div>
     </div>
     <div class="container">
         <div class="page-header-content">
             <h1 class="title">About Us</h1>
-            <h4 class="sub-title"><a class="home" href="index.html">Home </a><span class="icon">/</span><a class="inner-page" href="about.html"> About Us</a></h4>
+            <h4 class="sub-title"><a class="home" asp-controller="Home" asp-action="Index">Home </a><span class="icon">/</span><a class="inner-page" asp-controller="Home" asp-action="About"> About Us</a></h4>
         </div>
     </div>
 </section>
 <!-- ./ page-header -->
-
-<section class="about-section pt-120 pb-120">
+<section class="faq-section pt-120 pb-120">
     <div class="container">
-        <div class="row">
-            <div class="col-xl-6 col-lg-12">
-                <div class="about-img-wrap wow fade-in-left" data-wow-delay="400ms">
-                    <div class="about-img-1">
-                        <img src="~/assets/img/images/about-img-1.jpg" alt="about">
-                        <div class="video-btn">
-                            <a class="video-popup venobox"
-                               data-autoplay="true"
-                               data-vbtype="video"
-                               href="https://youtu.be/JwC-Qx1lJso">
-                                <div class="play-btn">
-                                    <i class="fa-sharp fa-solid fa-play"></i>
+        <div class="row align-items-center">
+            @* <div class="col-lg-5 col-md-12">
+            <div class="faq-img-wrap wow fade-in-left" data-wow-delay="400ms">
+            <div class="faq-img">
+            <img src="assets/img/images/faq-img.png" alt="faq">
+            </div>
+            <div class="faq-text-box">
+            <h4 class="student">Total Students</h4>
+            <ul class="faq-thumb-list">
+            <li><img src="assets/img/images/faq-thumb-1.png" alt="faq"></li>
+            <li><img src="assets/img/images/faq-thumb-2.png" alt="faq"></li>
+            <li><img src="assets/img/images/faq-thumb-3.png" alt="faq"></li>
+            <li><img src="assets/img/images/faq-thumb-4.png" alt="faq"></li>
+            <li class="number">25+</li>
+            </ul>
+            </div>
+            </div>
+            </div> *@
+            <div class="col-lg-12 col-md-12">
+                <div class="faq-content">
+                    <div class="section-heading mb-30">
+                        <h4 class="sub-heading wow fade-in-bottom" data-wow-delay="200ms"><span class="heading-icon"><i class="fa-sharp fa-solid fa-bolt"></i></span>Know about us</h4>
+                        <h2 class="section-title wow fade-in-bottom" data-wow-delay="400ms">Why Choose Princeton Learners Forum?</h2>
+                        <p class="mt-20 wow fade-in-bottom" data-wow-delay="500ms">
+                            Through Princeton Learners Forum, we continues to create an engaging and supportive environment where students can unlock.
+                            With a proven track record of helping students reach their full potential, we combines his expertise in board exam preparation,
+                            conceptual clarity, and problem-solving techniques. His teaching philosophy emphasizes a student-centered approach, making learning interactive,
+                            engaging, and effective.<br />
+                        </p>
+                    </div>
+                    <div class="faq-accordion">
+                        <div class="accordion" id="accordionExample">
+                            <div class="accordion-item wow fade-in-bottom" data-wow-delay="400ms">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><span>01.</span>Board-Specific Excellence:</button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        &emsp;&emsp; Our programs are meticulously designed to align with the unique requirements of ICSE, CBSE, and IGCSE syllabi,
+                                        ensuring every student is exam-ready.
+                                    </div>
                                 </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="about-img-2">
-                        <img src="~/assets/img/images/about-img-2.jpg" alt="about">
-                    </div>
-                    <div class="about-contact">
-                        <div class="icon"><i class="fa-sharp fa-regular fa-phone-volume"></i></div>
-                        <div class="content">
-                            <span>Online Support</span>
-                            <a href="tel:+2581523659">+258 152 3659</a>
+                            </div>
+                            <div class="accordion-item wow fade-in-bottom" data-wow-delay="200ms">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><span>02.</span>Interactive Online Classes:</button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        &emsp;&emsp; Learn math in a way that's engaging and easy to understand, with live, interactive sessions tailored to each student's pace.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item wow fade-in-bottom" data-wow-delay="200ms">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"><span>03.</span>Proven Success:</button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        &emsp;&emsp; Over 15 years of experience in helping students achieve top grades and build confidence in mathematics.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item wow fade-in-bottom" data-wow-delay="200ms">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"><span>03.</span>Specialized in Mathematics:</button>
+                                </h2>
+                                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        &emsp;&emsp; Whether you're a school student mastering board syllabus or an engineering aspirant tackling complex topics,
+                                        we have you covered.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item wow fade-in-bottom" data-wow-delay="200ms">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive"><span>03.</span>Comprehensive Approach:</button>
+                                </h2>
+                                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        &emsp;&emsp; From conceptual understanding to problem-solving techniques, we help students excel in both board exams and higher studies.
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-6 col-lg-12">
+        </div>
+    </div>
+</section>
+@* <section class="about-section pt-120 pb-120">
+    <div class="container">
+        <div class="row"> *@
+            @* <div class="col-xl-6 col-lg-12">
+            <div class="about-img-wrap wow fade-in-left" data-wow-delay="400ms">
+            <div class="about-img-1">
+            <img src="~/assets/img/images/about-img-1.jpg" alt="about">
+            <div class="video-btn">
+            <a class="video-popup venobox"
+            data-autoplay="true"
+            data-vbtype="video"
+            href="https://youtu.be/JwC-Qx1lJso">
+            <div class="play-btn">
+            <i class="fa-sharp fa-solid fa-play"></i>
+            </div>
+            </a>
+            </div>
+            </div>
+            <div class="about-img-2">
+            <img src="~/assets/img/images/about-img-2.jpg" alt="about">
+            </div>
+            <div class="about-contact">
+            <div class="icon"><i class="fa-sharp fa-regular fa-phone-volume"></i></div>
+            <div class="content">
+            <span>Online Support</span>
+            <a href="tel:+2581523659">+258 152 3659</a>
+            </div>
+            </div>
+            </div>
+            </div> *@
+            @* <div class="col-xl-12 col-lg-12">
                 <div class="about-content">
                     <div class="section-heading mb-40">
                         <h4 class="sub-heading wow fade-in-bottom" data-wow-delay="200ms"><span class="heading-icon"><i class="fa-sharp fa-solid fa-bolt"></i></span>Get More About Us</h4>
-                        <h2 class="section-title wow fade-in-bottom" data-wow-delay="400ms">Over 10 Years in Distant learning <br>for Skill Development</h2>
-                        <p class="mt-20 wow fade-in-bottom" data-wow-delay="500ms">Compellingly procrastinate equity invested markets with efficient process improvements.  actualize mission-critical partnerships with integrated portals. Authoritatively optimize low-risk high-yield metrics and plug-and-play potentialities.</p>
+                        <h2 class="section-title wow fade-in-bottom" data-wow-delay="400ms">Why Choose Princeton Learners Forum?</h2>
+                        <p class="mt-20 wow fade-in-bottom" data-wow-delay="500ms">
+                            Through Princeton Learners Forum, we continues to create an engaging and supportive environment where students can unlock<br />
+                            With a proven track record of helping students reach their full potential, we combines his expertise in board exam preparation,
+                            conceptual clarity, and problem-solving techniques. His teaching philosophy emphasizes a student-centered approach, making learning interactive,
+                            engaging, and effective.<br />
+                        </p>
+                        
+                        <p class="mt-20 wow fade-in-bottom" data-wow-delay="500ms">
+                            2.  <br />
+                            3.  <br />
+                            4.  <br />
+                            5.  
+
+                        </p>
+                    </div> *@
+                    @* <div class="about-counter-items wow fade-in-bottom" data-wow-delay="600ms">
+                    <div class="about-counter-item">
+                    <div class="icon"><img src="~/assets/img/icon/about-1.png" alt="about"></div>
+                    <div class="content">
+                    <h3 class="title"><span class="odometer" data-count="9.5">0</span><span class="number">k+</span></h3>
+                    <p>Total active students taking <br>gifted courses</p>
                     </div>
-                    <div class="about-counter-items wow fade-in-bottom" data-wow-delay="600ms">
-                        <div class="about-counter-item">
-                            <div class="icon"><img src="~/assets/img/icon/about-1.png" alt="about"></div>
-                            <div class="content">
-                                <h3 class="title"><span class="odometer" data-count="9.5">0</span><span class="number">k+</span></h3>
-                                <p>Total active students taking <br>gifted courses</p>
-                            </div>
-                        </div>
-                        <div class="about-counter-item">
-                            <div class="icon"><img src="~/assets/img/icon/about-2.png" alt="about"></div>
-                            <div class="content">
-                                <h3 class="title"><span class="odometer" data-count="6.7">0</span><span class="number">k+</span></h3>
-                                <p>Total active students taking <br>gifted courses</p>
-                            </div>
-                        </div>
                     </div>
-                    <div class="about-btn wow fade-in-bottom" data-wow-delay="700ms">
+                    <div class="about-counter-item">
+                    <div class="icon"><img src="~/assets/img/icon/about-2.png" alt="about"></div>
+                    <div class="content">
+                    <h3 class="title"><span class="odometer" data-count="6.7">0</span><span class="number">k+</span></h3>
+                    <p>Total active students taking <br>gifted courses</p>
+                    </div>
+                    </div>
+                    </div> *@
+@*                     <div class="about-btn wow fade-in-bottom" data-wow-delay="700ms">
                         <a href="about.html" class="ed-primary-btn">Start Free Trial</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</section> *@
 <!-- ./ about-section -->
-
-<section class="about-feature pt-120 pb-120">
+@* <section class="about-feature pt-120 pb-120">
     <div class="container">
         <div class="section-heading text-center">
             <h4 class="sub-heading wow fade-in-bottom" data-wow-delay="200ms"><span class="heading-icon"><i class="fa-sharp fa-solid fa-bolt"></i></span>Our Features</h4>
@@ -122,10 +225,9 @@
             </div>
         </div>
     </div>
-</section>
+</section> *@
 <!-- ./ about-feature -->
-
-<section class="counter-section">
+@* <section class="counter-section">
     <div class="container">
         <div class="row counter-wrap gy-lg-0 gy-5">
             <div class="col-lg-3 col-md-6">
@@ -154,10 +256,9 @@
             </div>
         </div>
     </div>
-</section>
+</section> *@
 <!-- ./ counter-section -->
-
-<section class="team-section pt-120 pb-120">
+@* <section class="team-section pt-120 pb-120">
     <div class="container">
         <div class="section-heading text-center">
             <h4 class="sub-heading wow fade-in-bottom" data-wow-delay="200ms"><span class="heading-icon"><i class="fa-sharp fa-solid fa-bolt"></i></span>Our Instructors</h4>
@@ -246,9 +347,8 @@
             </div>
         </div>
     </div>
-</section>
+</section> *@
 <!-- ./ team-section -->
-
 @* <section class="testimonial-section-3 pt-120 pb-120">
     <div class="shapes">
         <div class="shape shape-1"><img src="~/assets/img/shapes/testi-shape-3.png" alt="shape"></div>
@@ -293,7 +393,6 @@
     </div>
 </section> *@
 <!-- ./ testimonial-section -->
-
 @* <section class="video-feature-section pt-120 pb-120">
     <div class="container">
         <div class="section-heading text-center">
@@ -343,4 +442,3 @@
     </div>
 </section> *@
 <!-- ./ video-section -->
-

@@ -37,16 +37,25 @@
                 <div class="top-bar-inner">
                     <div class="top-bar-left">
                         <ul class="top-bar-list">
-                            <li><i class="fa-regular fa-phone"></i><a href="tel:256214203215">256 214 203 215</a></li>
-                            <li><i class="fa-regular fa-location-dot"></i><span>258 Helano Street, New York</span></li>
-                            <li><i class="fa-regular fa-clock"></i><span>Mon - Sat: 8:00 - 15:00</span></li>
+                            <li>
+                                <i class="fa-regular fa-phone"></i><a href="tel:918122097882">
+                                    +91 812 209 7882
+                                </a>
+                            </li>
+                            <li>
+                                <i class="fa-regular fa-location-dot"></i><span>
+                                    Millerpuram, Thoothukudi - 628008
+                                    , India
+                                </span>
+                            </li>
+                            <li><i class="fa-regular fa-clock"></i><span>Mon - Sat: 10:00 AM - 05:00 PM</span></li>
                         </ul>
                     </div>
                     <div class="top-bar-right">
-                        <div class="register-box">
+                        @* <div class="register-box">
                             <div class="icon"><i class="fa-regular fa-user"></i></div>
                             <a href="#">Login / Register</a>
-                        </div>
+                        </div> *@
                         <div class="top-social-wrap">
                             <span>Follow Us</span>
                             <ul class="social-list">
@@ -66,7 +75,7 @@
                 <div class="primary-header-inner">
                     <div class="header-logo d-lg-block">
                         <a asp-controller="Home" asp-action="Index">
-                            <img src="~/assets/img/logo/logo-1.png" alt="Logo">
+                            <img src="~/assets/img/logo/logo-1.png" alt="Logo" loading="lazy">
                         </a>
                     </div>
                     <div class="header-right-wrap">
@@ -82,6 +91,17 @@
                                         <li><a href="index-4.html">Online Course</a></li>
                                         <li><a href="index-5.html">Eduction Platform</a></li>
                                         </ul> *@
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a asp-controller="Home" asp-action="About">About</a>
+                                        @*  <ul>
+                                        <li><a href="about.html">About Us</a></li>
+                                        <li><a href="teachers.html">Instructor</a></li>
+                                        <li><a href="pricing.html">Pricing Table</a></li>
+                                        <li><a href="event.html">Event</a></li>
+                                        <li><a href="event-details.html">Event Details</a></li>
+                                        <li><a href="error-page.html">404 Error</a></li>
+                                        </ul>  *@
                                     </li>
                                     <li class="menu-item-has-children">
                                         <a asp-controller="Home" asp-action="Courses">Courses</a>
@@ -100,17 +120,7 @@
                                     <li><a href="checkout.html">Checkout</a></li>
                                     </ul>
                                     </li> *@
-                                    @* <li class="menu-item-has-children">
-                                        <a asp-controller="Home" asp-action="About">About</a>
-                                          <ul>
-                                        <li><a href="about.html">About Us</a></li>
-                                        <li><a href="teachers.html">Instructor</a></li>
-                                        <li><a href="pricing.html">Pricing Table</a></li>
-                                        <li><a href="event.html">Event</a></li>
-                                        <li><a href="event-details.html">Event Details</a></li>
-                                        <li><a href="error-page.html">404 Error</a></li>
-                                        </ul> 
-                                    </li> *@
+                                   
                                     @* <li class="menu-item-has-children">
                                     <a href="blog-grid.html">Blog</a>
                                     <ul>
@@ -120,7 +130,15 @@
                                     <li><a href="blog-details.html">Blog Details</a></li>
                                     </ul>
                                     </li> *@
-                                    <li><a asp-controller="Home" asp-action="Contact">Contact / Register For A Call</a></li>
+                                   @*  <li><a asp-controller="Home" asp-action="Contact">Contact / Register For A Call</a></li> *@
+                                    <li style="list-style: none; display: inline-block; margin: 0 10px;">
+                                        <a asp-controller="Home" asp-action="Contact"
+                                           style="display: inline-block; padding: 10px 20px; background-color: rgb(7, 166, 152);
+              color: white; text-decoration: none; border-radius: 5px; font-weight: bold;
+              box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
+                                            Contact / Register For A Call
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -137,7 +155,7 @@
                             <a href="contact.html" class="ed-primary-btn header-btn">Get a quote <i class="fa-sharp fa-regular fa-arrow-right"></i></a> *@
                             <div class="header-logo d-none d-lg-none">
                                 <a asp-controller="Home" asp-action="Index">
-                                    <img src="~/assets/img/logo/logo-1.png" alt="Logo">
+                                    <img src="~/assets/img/logo/logo-1.png" alt="Logo" loading="lazy">
                                 </a>
                             </div>
                             <div class="header-right-item d-lg-none d-md-block">
@@ -167,7 +185,7 @@
     <div class="mobile-side-menu">
         <div class="side-menu-content">
             <div class="side-menu-head">
-                <a asp-controller="Home" asp-action="Index"><img src="~/assets/img/logo/logo-1.png" alt="logo"></a>
+                <a asp-controller="Home" asp-action="Index"><img src="~/assets/img/logo/logo-1.png" alt="logo" loading="lazy"></a>
                 <button class="mobile-side-menu-close"><i class="fa-regular fa-xmark"></i></button>
             </div>
             <div class="side-menu-wrap"></div>
@@ -181,10 +199,10 @@
     <!-- /.mobile-side-menu -->
     <div class="mobile-side-menu-overlay"></div>
 
-    <div id="preloader">
+   @*  <div id="preloader">
         <div class="spinner-logo"><img src="~/assets/img/favicon.png" alt="logo"></div>
         <div class="spinner"></div>
-    </div>
+    </div> *@
     <!-- ./ preloader -->
     @* <div class="container">
     <main role="main" class="pb-3"> *@
@@ -210,10 +228,12 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="footer-widget">
                             <h3 class="widget-header">Get in touch!</h3>
-                            <p class="mb-30">Fusce varius, dolor tempor interdum tristiquei bibendum.</p>
+                            @* <p class="mb-30">Fusce varius, dolor tempor interdum tristiquei bibendum.</p> *@
                             <div class="footer-contact">
-                                <span class="number"><i class="fa-regular fa-phone"></i><a href="tel:702123-1478">(702) 123-1478</a></span>
-                                <a href="mailto:info@company.com" class="mail">info@company.com</a>
+                                <span class="number"><i class="fa-regular fa-phone"></i><a href="tel:918122097882">+91 812 209 7882</a></span>
+                                <a href="mailto:princetonlearnersforum@gmail.com" class="mail">
+                                    princetonlearnersforum@gmail.com
+                                </a>
                             </div>
                             <ul class="footer-social">
                                 <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
