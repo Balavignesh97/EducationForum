@@ -1,11 +1,17 @@
-var builder = WebApplication.CreateBuilder(args);
+using EducationForum.DataContext;
+using Microsoft.EntityFrameworkCore;
 
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContextPool<EForumDBContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("EForumConnection"));
+});
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+//Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
