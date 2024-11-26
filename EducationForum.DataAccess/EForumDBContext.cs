@@ -1,8 +1,7 @@
-﻿using EducationForum.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using EducationForum.Domain;
 
-namespace EducationForum.DataContext
+namespace EducationForum.DataAccess
 {
     public class EForumDBContext : DbContext
     {
@@ -40,9 +39,9 @@ namespace EducationForum.DataContext
             {
                 entity.HasKey(e => e.UserID);
                 entity.ToTable("User", "EForum");
-                entity.Property(e => e.DateAdded)
-                    .HasColumnType("datetime")
-                    .HasDefaultValue("(getdate())");
+                //entity.Property(e => e.DateAdded)
+                //    .HasColumnType("datetime")
+                //    .HasDefaultValue("(getdate())");
                 entity.Property(e => e.Email)
                     .HasMaxLength(100)
                     .IsUnicode(false);

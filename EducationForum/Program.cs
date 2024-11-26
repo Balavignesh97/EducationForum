@@ -1,5 +1,7 @@
-using EducationForum.DataContext;
 using Microsoft.EntityFrameworkCore;
+using EducationForum.DataAccess;
+using EducationForum.Services.Interface;
+using EducationForum.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContextPool<EForumDBContext>(options =>
@@ -8,6 +10,8 @@ builder.Services.AddDbContextPool<EForumDBContext>(options =>
 });
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IUserServices,UserServices>();
 
 var app = builder.Build();
 
