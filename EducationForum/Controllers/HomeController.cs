@@ -1,5 +1,8 @@
+using EducationForum.Domain;
 using EducationForum.Models;
+using EducationForum.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace EducationForum.Controllers
@@ -7,10 +10,11 @@ namespace EducationForum.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private ICoursesServices _coursesServices;
+        public HomeController(ILogger<HomeController> logger, ICoursesServices coursesServices)
         {
             _logger = logger;
+            _coursesServices = coursesServices;
         }
 
         public IActionResult Index()
@@ -29,11 +33,24 @@ namespace EducationForum.Controllers
         {
             return View();
         }
-        public IActionResult Contact()
+        public IActionResult Contact(int subjectId=0)
         {
             return View();
         }
-
+        [HttpGet]
+        public async Task<ActionResult<List<TemplateCourses>>> GetTemplateCourseDetails()
+        {
+            List<TemplateCourses> Courses = new List<TemplateCourses>();
+            Courses = await _coursesServices.GetTemplateCourseDetails();
+            if(Courses!=null && Courses.Count() > 0)
+            {
+                return Json(Courses);
+            }
+            else
+            {
+                return Json(new List<TemplateCourses>());
+            }
+        }
         public IActionResult Privacy()
         {
             return View();

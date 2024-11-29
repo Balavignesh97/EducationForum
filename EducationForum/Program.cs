@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using EducationForum.DataAccess;
 using EducationForum.Services.Interface;
 using EducationForum.Services;
+using EducationForum.Repository.Interface;
+using EducationForum.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContextPool<EForumDBContext>(options =>
@@ -12,6 +14,8 @@ builder.Services.AddDbContextPool<EForumDBContext>(options =>
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IUserServices,UserServices>();
+builder.Services.AddScoped<ICoursesServices,CoursesServices>();
+builder.Services.AddScoped<ICoursesRepository,CoursesRepository>();
 
 var app = builder.Build();
 

@@ -18,6 +18,7 @@ namespace EducationForum.DataAccess
         public DbSet<MasterGender> Genders { get; set; } = null!;
         public DbSet<MasterUserType> UserTypes { get; set; } = null!;
         public DbSet<User> Users { get; set; } = null!;
+        public DbSet<TemplateCourses> TemplateCourses { get; set; } = null!;
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MasterState>(entity =>
@@ -50,6 +51,14 @@ namespace EducationForum.DataAccess
                 entity.Property(e => e.IsLocked).HasDefaultValueSql("(0)");
                 entity.Property(e => e.IsTwoFactorAuthentication).HasDefaultValueSql("(0)");
                 entity.Property(e => e.UserGUID).HasDefaultValueSql("(newid())");
+            });
+            modelBuilder.Entity<TemplateCourses>(entity =>
+            {
+                entity.HasKey(e => e.CourseTemplateID);
+                entity.ToTable("Courses", "Template");
+                entity.Property(e => e.IsActive).HasDefaultValueSql("(1)");
+                entity.Property(e => e.IsDeleted).HasDefaultValueSql("(0)");
+                entity.Property(e => e.DateAdded).HasDefaultValueSql("(GETDATE())");
             });
 
         }
