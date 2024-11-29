@@ -4456,7 +4456,7 @@ START: Page Header CSS
   position: relative;
   z-index: 1;
   overflow: hidden;
-  padding: 120px 0;
+  padding: 60px 0;
 }
 .page-header .overlay {
   background: linear-gradient(90deg, #F3F7FB 43.21%, rgba(243, 247, 251, 0.24) 63.66%);

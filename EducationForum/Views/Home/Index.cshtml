@@ -4,74 +4,89 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-<section class="hero-section-2 overflow-hidden">
-    @* <div class="hero-bg-wrap">
-        <div class="hero-bg"><img src="~/assets/img/bg-img/hero-bg.png" alt="hero"></div>
-        <div class="hero-bg-shape"><img src="~/assets/img/shapes/hero-bg-shape.png" alt="hero"></div>
-         <div class="faq-text-box">
-            <h4 class="student">Instructor</h4>
-            <div class="faq-thumb-list-wrap">
-                <ul class="faq-thumb-list">
+<div class="modal fade" id="WellcomePopup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width:80%">
+        <div class="modal-content">
+            <div class="modal-header">
+                @* <h5 class="modal-title" id="exampleModalLabel">Welcome!</h5> *@
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <section class="hero-section-2 overflow-hidden">
+                    @* <div class="hero-bg-wrap">
+                    <div class="hero-bg"><img src="~/assets/img/bg-img/hero-bg.png" alt="hero"></div>
+                    <div class="hero-bg-shape"><img src="~/assets/img/shapes/hero-bg-shape.png" alt="hero"></div>
+                    <div class="faq-text-box">
+                    <h4 class="student">Instructor</h4>
+                    <div class="faq-thumb-list-wrap">
+                    <ul class="faq-thumb-list">
                     <li><img src="~/assets/img/images/faq-thumb-1.png" alt="faq"></li>
                     <li><img src="~/assets/img/images/faq-thumb-2.png" alt="faq"></li>
                     <li><img src="~/assets/img/images/faq-thumb-3.png" alt="faq"></li>
                     <li><img src="~/assets/img/images/faq-thumb-4.png" alt="faq"></li>
                     <li><img src="~/assets/img/images/faq-thumb-5.png" alt="faq"></li>
                     <li class="number">+</li>
-                </ul>
-                <p><span>200+</span> <br>Instuctor</p>
-            </div>
-        </div> 
-         <div class="hero-text-box">
-            <div class="icon"><i class="fa-solid fa-user"></i></div>
-            <div class="content">
-                <h5 class="text-title">150K</h5>
-                <span>Assisted Students</span>
-            </div>
-        </div> 
-    </div> *@
-    <div class="shapes">
-        <div class="shape shape-1"><img src="~/assets/img/shapes/hero-shape-11.png" alt="shape" loading="lazy"></div>
-        <div class="shape shape-2"><img src="~/assets/img/shapes/hero-shape-12.png" alt="shape" loading="lazy"></div>
-    </div>
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-12 col-md-12">
-                <div class="hero-content-2">
-                    <div class="section-heading mb-20">
-                        <h4 class="sub-heading wow fade-in-bottom" data-wow-delay="200ms"><span class="heading-icon"><i class="fa-sharp fa-solid fa-bolt"></i></span>Welcome to Princeton Learners Forum</h4>
-                        <h2 class="section-title wow fade-in-bottom" data-wow-delay="400ms">"Where Excellence in Education Meets Every Learner’s Needs"</h2>
+                    </ul>
+                    <p><span>200+</span> <br>Instuctor</p>
                     </div>
-                    <p class="desc">Start Your Journey with Us Today, we believe that every student has the potential to excel. Let us help you unlock yours!</p>
-                    @* <div class="hero-form">
-                        <form action="mail.php">
-                            <input type="text" id="text" name="text" class="form-control" placeholder="What do you want to learn today?">
-                        </form>
-                        <button class="ed-primary-btn">Search Now <i class="fa-regular fa-arrow-right"></i></button>
-                        <div class="icon"><i class="fa-regular fa-magnifying-glass"></i></div>
+                    </div>
+                    <div class="hero-text-box">
+                    <div class="icon"><i class="fa-solid fa-user"></i></div>
+                    <div class="content">
+                    <h5 class="text-title">150K</h5>
+                    <span>Assisted Students</span>
+                    </div>
+                    </div>
                     </div> *@
-                   @*  <div class="about-counter-items mb-0 wow fade-in-bottom" data-wow-delay="600ms">
-                        <div class="about-counter-item">
-                            <div class="icon"><img src="~/assets/img/icon/about-1.png" alt="about"></div>
-                            <div class="content">
-                                <h3 class="title"><span class="odometer" data-count="9.5">0</span><span class="number">K+</span></h3>
-                                <p>Total active students taking <br>gifted courses</p>
+                    <div class="shapes">
+                        <div class="shape shape-1"><img src="~/assets/img/shapes/hero-shape-11.png" alt="shape" loading="lazy"></div>
+                        <div class="shape shape-2"><img src="~/assets/img/shapes/hero-shape-12.png" alt="shape" loading="lazy"></div>
+                    </div>
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="hero-content-2">
+                                    <div class="section-heading mb-20">
+                                        <h4 class="sub-heading wow fade-in-bottom" data-wow-delay="200ms"><span class="heading-icon"><i class="fa-sharp fa-solid fa-bolt"></i></span>Welcome to Princeton Learners Forum</h4>
+                                        <h2 class="section-title wow fade-in-bottom" data-wow-delay="400ms">"Where Excellence in Education Meets Every Learner’s Needs"</h2>
+                                    </div>
+                                    <p class="desc">Start Your Journey with Us Today, we believe that every student has the potential to excel. Let us help you unlock yours!</p>
+                                    @* <div class="hero-form">
+                                    <form action="mail.php">
+                                    <input type="text" id="text" name="text" class="form-control" placeholder="What do you want to learn today?">
+                                    </form>
+                                    <button class="ed-primary-btn">Search Now <i class="fa-regular fa-arrow-right"></i></button>
+                                    <div class="icon"><i class="fa-regular fa-magnifying-glass"></i></div>
+                                    </div> *@
+                                    @*  <div class="about-counter-items mb-0 wow fade-in-bottom" data-wow-delay="600ms">
+                                    <div class="about-counter-item">
+                                    <div class="icon"><img src="~/assets/img/icon/about-1.png" alt="about"></div>
+                                    <div class="content">
+                                    <h3 class="title"><span class="odometer" data-count="9.5">0</span><span class="number">K+</span></h3>
+                                    <p>Total active students taking <br>gifted courses</p>
+                                    </div>
+                                    </div>
+                                    <div class="about-counter-item">
+                                    <div class="icon"><img src="~/assets/img/icon/about-2.png" alt="about"></div>
+                                    <div class="content">
+                                    <h3 class="title"><span class="odometer" data-count="15.5">0</span><span class="number">K+</span></h3>
+                                    <p>Total active students taking <br>gifted courses</p>
+                                    </div>
+                                    </div>
+                                    </div> *@
+                                </div>
                             </div>
                         </div>
-                        <div class="about-counter-item">
-                            <div class="icon"><img src="~/assets/img/icon/about-2.png" alt="about"></div>
-                            <div class="content">
-                                <h3 class="title"><span class="odometer" data-count="15.5">0</span><span class="number">K+</span></h3>
-                                <p>Total active students taking <br>gifted courses</p>
-                            </div>
-                        </div>
-                    </div> *@
-                </div>
+                    </div>
+                </section>
             </div>
+            @* <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div> *@
         </div>
     </div>
-</section>
+</div>
+
 <!-- ./ hero-section -->
 
 @* <section class="course-section bg-grey pt-120 pb-120">
@@ -494,7 +509,7 @@
             <div class="col-lg-6 col-md-12">
                 <div class="about-img-wrap-3 wow fade-in-left" data-wow-delay="400ms">
                     <div class="about-img">
-                        <img class="main-img" src="assets/img/images/about-img-3.png" alt="about" loading="lazy">
+                        <img class="main-img" src="assets/img/images/Instructor.png" alt="about" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -525,10 +540,10 @@
     </div>
 </section>
 <!-- ./ faq-section -->
-<section class="faq-section pt-120 pb-120">
+@* <section class="faq-section pt-120 pb-120">
     <div class="container">
         <div class="row align-items-center">
-            @* <div class="col-lg-5 col-md-12">
+             <div class="col-lg-5 col-md-12">
                 <div class="faq-img-wrap wow fade-in-left" data-wow-delay="400ms">
                     <div class="faq-img">
                         <img src="assets/img/images/faq-img.png" alt="faq">
@@ -544,8 +559,8 @@
                         </ul>
                     </div>
                 </div>
-            </div> *@
-            <div class="col-lg-12 col-md-12">
+            </div> 
+            <div class="col-lg-6 col-md-12">
                 <div class="faq-content">
                     <div class="section-heading mb-30">
                         <h4 class="sub-heading wow fade-in-bottom" data-wow-delay="200ms"><span class="heading-icon"><i class="fa-sharp fa-solid fa-bolt"></i></span>Your Learning, Our Priority</h4>
@@ -587,9 +602,10 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
-</section>
+</section> *@
 @* <section class="team-section pb-120">
     <div class="container">
         <div class="team-top heading-space">
@@ -824,3 +840,19 @@
     </div>
 </section> *@
 <!-- ./ blog-section -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let modal = new bootstrap.Modal(document.getElementById('WellcomePopup'));
+
+        // Check if the modal has been shown before
+        // if (!localStorage.getItem('modalShown')) {
+        //     modal.show();
+        //     localStorage.setItem('modalShown', 'true');
+        // }
+        // Check if the modal has been shown before in the current session
+        if (!sessionStorage.getItem('modalShown')) {
+            modal.show();
+            sessionStorage.setItem('modalShown', 'true');
+        }
+    });
+</script>
