@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "_NewLayout";
+}
+
+
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header" style="background-color:#D3D3D3">
+                Customer Group List
+            </div>
+
+            <div class="card-body">
+                <table id="myTable" class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th><label>Name</label></th>
+
+                            <th><label>Status</label></th>
+
+                            <th><label>Action</label></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td><label>Name</label></td>
+
+                            <td><label>Status</label></td>
+
+                            <td>
+                                <a asp-action="Edit" asp-route-id="1" id="loader"><i class="fa fa-edit" title="Edit" style="color:#513795"></i></a>
+                                <span> | </span> <a asp-action="Delete" asp-route-id="1" id="loader"><i class="fa fa-trash" title="Delete" style="color:#513795"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Muthu</label></td>
+
+                            <td><label>Status</label></td>
+
+                            <td>
+                                <a asp-action="Edit" asp-route-id="1" id="loader"><i class="fa fa-edit" title="Edit" style="color:#513795"></i></a>
+                                <span> | </span> <a asp-action="Delete" asp-route-id="1" id="loader"><i class="fa fa-trash" title="Delete" style="color:#513795"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Kanaga</label></td>
+
+                            <td><label>Status</label></td>
+
+                            <td>
+                                <a asp-action="Edit" asp-route-id="1" id="loader"><i class="fa fa-edit" title="Edit" style="color:#513795"></i></a>
+                                <span> | </span> <a asp-action="Delete" asp-route-id="1" id="loader"><i class="fa fa-trash" title="Delete" style="color:#513795"></i></a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
