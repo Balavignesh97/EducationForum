@@ -1,0 +1,19 @@
+﻿using EducationForum.DataAccess;
+using EducationForum.Domain;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EducationForum.Repository.Interface
+{
+    public interface ISubjectRepository: IRepositoryBase<object>
+    {
+
+        Task<List<Subjects>> GetSubjects();
+        Task<List<Grades>> GetGrades();
+        Task<List<ClassTypes>> GetClassTypes();
+
+    }
+}

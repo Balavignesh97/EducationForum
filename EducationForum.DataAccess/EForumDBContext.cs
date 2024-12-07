@@ -19,6 +19,13 @@ namespace EducationForum.DataAccess
         public DbSet<MasterUserType> UserTypes { get; set; } = null!;
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<TemplateCourses> TemplateCourses { get; set; } = null!;
+
+        public DbSet<Subjects> Subjects { get; set; } = null!;
+        public DbSet<Grades> Grades { get; set; } = null!;
+        public DbSet<ClassTypes> ClassTypes { get; set; } = null!;
+        public DbSet<StudentEnquiry> StudentEnquiry { get; set; } = null!;
+        public DbSet<StudentEnquiryGradeSubjectMap> StudentEnquiryGradeSubjectMap { get; set; } = null!;
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MasterState>(entity =>
@@ -61,6 +68,12 @@ namespace EducationForum.DataAccess
                 entity.Property(e => e.DateAdded).HasDefaultValueSql("(GETDATE())");
             });
 
+            
+            modelBuilder.Entity<Subjects>().ToTable("Subjects", "EForumMaster");
+            modelBuilder.Entity<Grades>().ToTable("Grade", "EForumMaster");
+            modelBuilder.Entity<ClassTypes>().ToTable("ClassType", "EForumMaster");
+            modelBuilder.Entity<StudentEnquiry>().ToTable("StudentEnquiry", "EForum");
+            modelBuilder.Entity<StudentEnquiryGradeSubjectMap>().ToTable("StudentEnquiryGradeSubjectMap", "EForum");
         }
     }
 }

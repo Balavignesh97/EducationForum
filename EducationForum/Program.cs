@@ -4,11 +4,12 @@ using EducationForum.Services.Interface;
 using EducationForum.Services;
 using EducationForum.Repository.Interface;
 using EducationForum.Repository;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContextPool<EForumDBContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("EForumConnection"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("EForumConnection"),b => b.MigrationsAssembly("EducationForum"));
 });
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -16,6 +17,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IUserServices,UserServices>();
 builder.Services.AddScoped<ICoursesServices,CoursesServices>();
 builder.Services.AddScoped<ICoursesRepository,CoursesRepository>();
+builder.Services.AddScoped<ISubjectServices, SubjectServices>();
+builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
 
 var app = builder.Build();
 
