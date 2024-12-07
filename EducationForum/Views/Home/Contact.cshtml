@@ -3,32 +3,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<head>
-    <!-- Include jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- Include jQuery Validation Plugin -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+<style>
 
-    <style>
+    .hide {
+        display: none !important;
+    }
 
-        .hide {
-            display: none !important;
-        }
+    .show {
+        display: block;
+    }
 
-        .show {
-            display: block;
-        }
+    .error {
+        border-color: red !important;
+    }
 
-        .error {
-            border-color: red !important;
-        }
-
-        .noneerror {
-            border-color: green !important;
-        }
-    </style>
-</head>
+    .noneerror {
+        border-color: green !important;
+    }
+</style>
 
 <section class="page-header">
     <div class="bg-item">
@@ -84,12 +77,8 @@
                                     <div class="form-item">
                                         <div class="nice-select select-control form-control country Class" tabindex="0" name="Classdiv" required>
                                             <span class="current">Select Class</span>
-                                            <ul class="list">
-                                                <li data-value="" class="option selected focus">Select Class</li>
-                                                @foreach (var grade in @ViewBag.grade as SelectList)
-                                                {
-                                                    <li data-value="@grade.Value" class="option">@grade.Text</li>
-                                                }
+                                            <ul class="list" id="ClassDD">
+                                                <li data-value="" class="option selected focus">Loading...</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -100,15 +89,10 @@
                                 <input type="hidden" name="choiceofclass" id="choiceofclass" />
                                 <div class="col-md-6">
                                     <div class="form-item">
-                                        @* <div class="nice-select select-control form-control country subject" tabindex="0"><span class="current" name="current">Select Subject</span><ul class="list"><li data-value="" class="option selected focus">Select Subject</li><li data-value="vdt" class="option">Plan One</li><li data-value="can" class="option">Plan Two</li><li data-value="uk" class="option">Plan Three</li></ul></div> *@
                                         <div class="nice-select select-control form-control country subject" tabindex="0">
                                             <span class="current" name="current">Select Subject</span>
-                                            <ul class="list">
-                                                <li data-value="" class="option selected focus">Select Subject</li>
-                                                @foreach (var subject in @ViewBag.subject as SelectList)
-                                                {
-                                                    <li data-value="@subject.Value" class="option">@subject.Text</li>
-                                                }
+                                            <ul class="list" id="SubjectDD">
+                                                <li data-value="" class="option selected focus">Loading...</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -117,12 +101,8 @@
                                     <div class="form-item">
                                         <div class="nice-select select-control form-control country choiceofclass" tabindex="0">
                                             <span class="current">Choice Of Class</span>
-                                            <ul class="list">
-                                                <li data-value="" class="option selected focus">Choice Of Class</li>
-                                                @foreach (var classtype in @ViewBag.classtype as SelectList)
-                                                {
-                                                    <li data-value="@classtype.Value" class="option">@classtype.Text</li>
-                                                }
+                                            <ul class="list" id="ChoiseOfClassDD">
+                                                <li data-value="" class="option selected focus">Loadeing...</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -194,109 +174,4 @@
     </div>
 </section>
 <!-- ./ contact-section -->
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-
-        document.querySelector('.subject').addEventListener('click', function (event) {
-            if (event.target && event.target.classList.contains('option')) {
-                const options = document.querySelectorAll('.subject .option');
-                options.forEach(option => option.classList.remove('selected', 'focus'));
-                event.target.classList.add('selected', 'focus');
-
-                const selectedValue = event.target.getAttribute('data-value');
-                $('#subject').val(selectedValue);
-                Validatecheck();
-            }
-        });
-
-        document.querySelector('.choiceofclass').addEventListener('click', function (event) {
-            if (event.target && event.target.classList.contains('option')) {
-                const options = document.querySelectorAll('.choiceofclass .option');
-                options.forEach(option => option.classList.remove('selected', 'focus'));
-                event.target.classList.add('selected', 'focus');
-
-                const selectedValue = event.target.getAttribute('data-value');
-                $('#choiceofclass').val(selectedValue);
-                Validatecheck();
-            }
-        });
-
-        document.querySelector('.Class').addEventListener('click', function (event) {
-            if (event.target && event.target.classList.contains('option')) {
-                const options = document.querySelectorAll('.Class .option');
-                options.forEach(option => option.classList.remove('selected', 'focus'));
-                event.target.classList.add('selected', 'focus');
-
-                const selectedValue = event.target.getAttribute('data-value');
-                $('#Class').val(selectedValue);
-                Validatecheck();
-            }
-        });
-    });
-
-
-    $('#contactsubmit').click(async function (event) {
-        var validStatus = await Validatecheck();
-        if (validStatus) {
-            var datastring = $(this).closest('form').serialize();
-            var url = '/Home/GetContact';
-
-            Callservice(datastring, url);
-        }
-        else{
-            event.preventDefault();
-        }
-    });
-
-    $('#fullname, #email, #Mobile, #message').on('input', function () {
-        Validatecheck();
-    });
-
-    async function Validatecheck() {
-        var fullname = $('#fullname');
-        var email = $('#email');
-        var Mobile = $('#Mobile');
-        var Class = $('#Class').val();
-        var subject = $('#subject').val();
-        var choiceofclass = $('#choiceofclass').val();
-        var Class1 = $('.Class');
-        var subject1 = $('.subject');
-        var choiceofclass1 = $('.choiceofclass');
-        var message = $('#message');
-
-        var isValidEmail = validateEmail(email.val());
-        var isValidPhone = validatePhone(Mobile.val());
-
-        fullname.toggleClass('error', !fullname.val());
-        email.toggleClass('error', !isValidEmail);
-        Mobile.toggleClass('error', !isValidPhone);
-        message.toggleClass('error', !message.val());
-        Class1.toggleClass('error', !Class);
-        subject1.toggleClass('error', !subject);
-        choiceofclass1.toggleClass('error', !choiceofclass);
-
-        fullname.toggleClass('noneerror', !!fullname.val());
-        email.toggleClass('noneerror', isValidEmail);
-        Mobile.toggleClass('noneerror', isValidPhone);
-        message.toggleClass('noneerror', !!message.val());
-        Class1.toggleClass('noneerror', !!Class);
-        subject1.toggleClass('noneerror', !!subject);
-        choiceofclass1.toggleClass('noneerror', !!choiceofclass);
-
-
-        return fullname.val() && isValidEmail && isValidPhone && message.val() && Class && subject && choiceofclass;
-    }
-
-    function validateEmail(email) {
-        var emailPattern = /^[a-zA-Z0-9._-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        return emailPattern.test(email);
-    }
-
-    function validatePhone(phone) {
-        var phonePattern = /^[6-9]{1}[0-9]{9}$/;
-        return phonePattern.test(phone);
-    }
-
-</script>
+<script src="~/assets/services/contact_service.js"></script>

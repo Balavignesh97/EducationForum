@@ -2,7 +2,6 @@ using EducationForum.Domain;
 using EducationForum.Models;
 using EducationForum.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -36,9 +35,8 @@ namespace EducationForum.Controllers
         {
             return View();
         }
-        public IActionResult Contact(int subjectId=0)
+        public IActionResult Contact(int subjectId = 0)
         {
-            setviewbag();
             return View();
         }
         [HttpPost]
@@ -48,11 +46,11 @@ namespace EducationForum.Controllers
             //bool Iupdated = false;
 
             StudentEnquiry studentEnquiry = new StudentEnquiry();
-            StudentEnquiryGradeSubjectMap studentEnquiryGradeSubjectMap =   new StudentEnquiryGradeSubjectMap();
+            StudentEnquiryGradeSubjectMap studentEnquiryGradeSubjectMap = new StudentEnquiryGradeSubjectMap();
             studentEnquiry.Name = obj.fullname;
             studentEnquiry.Email = obj.email;
             studentEnquiry.Phone = obj.Mobile;
-            studentEnquiry.ClassTypeID =Convert.ToInt16(obj.choiceofclass);
+            studentEnquiry.ClassTypeID = Convert.ToInt16(obj.choiceofclass);
             studentEnquiry.EnquirerNote = obj.message;
             studentEnquiry.DateAdded = DateTime.Now;
             _subjectservices.Create(studentEnquiry);
@@ -80,13 +78,52 @@ namespace EducationForum.Controllers
         {
             List<TemplateCourses> Courses = new List<TemplateCourses>();
             Courses = await _coursesServices.GetTemplateCourseDetails();
-            if(Courses!=null && Courses.Count() > 0)
+            if (Courses != null && Courses.Count() > 0)
             {
                 return Json(Courses);
             }
             else
             {
                 return Json(new List<TemplateCourses>());
+            }
+        }
+        [HttpGet]
+        public async Task<ActionResult<List<Subjects>>> GetSubjects()
+        {
+            try
+            {
+                var Subjects = await _subjectservices.GetSubjects();
+                return Json(Subjects);
+            }
+            catch
+            {
+                return Json(new List<Subjects>());
+            }
+        }
+        [HttpGet]
+        public async Task<ActionResult<List<Grades>>> GetGrades()
+        {
+            try
+            {
+                var Grades = await _subjectservices.GetGrades();
+                return Json(Grades);
+            }
+            catch
+            {
+                return Json(new List<Grades>());
+            }
+        }
+        [HttpGet]
+        public async Task<ActionResult<List<ClassTypes>>> GetClassTypes()
+        {
+            try
+            {
+                var classtypes = await _subjectservices.GetClassTypes();
+                return Json(classtypes);
+            }
+            catch
+            {
+                return Json(new List<ClassTypes>());
             }
         }
         public IActionResult Privacy()
@@ -98,16 +135,6 @@ namespace EducationForum.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-        public void setviewbag()
-        {
-            var getsubject=_subjectservices.GetSubjects().Result;
-            var getgrade=_subjectservices.GetGrades().Result;
-            var getclasstype=_subjectservices.GetClassTypes().Result;
-            ViewBag.subject = new SelectList(getsubject.Where(x=>x.IsActive).ToList(), "SubjectID", "SubjectName");
-            ViewBag.grade = new SelectList(getgrade.Where(x => x.IsActive).ToList(), "GradeID", "Grade");
-            ViewBag.classtype = new SelectList(getclasstype.Where(x => x.IsActive).ToList(), "ClassTypeID", "ClassType");
         }
     }
 }

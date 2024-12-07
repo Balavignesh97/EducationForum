@@ -4,7 +4,6 @@ using EducationForum.Services.Interface;
 using EducationForum.Services;
 using EducationForum.Repository.Interface;
 using EducationForum.Repository;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContextPool<EForumDBContext>(options =>
