@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const selectedValue = event.target.getAttribute('data-value');
             $('#subject').val(selectedValue);
+            Validatecheck('subject');
         }
     });
 
@@ -74,6 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const selectedValue = event.target.getAttribute('data-value');
             $('#choiceofclass').val(selectedValue);
+            Validatecheck('choiceofclass');
         }
     });
 
@@ -85,31 +87,79 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const selectedValue = event.target.getAttribute('data-value');
             $('#Class').val(selectedValue);
+            Validatecheck('Class');
         }
     });
 });
 
 
+$('#smspin').removeClass('show').addClass('hide');
 $('#contactsubmit').click(async function (event) {
-    console.log('click')
-    //var validStatus = await Validatecheck();
-    //console.log(validStatus)
-    //if (validStatus) {
+    //console.log('click')
+    var validStatus = await Validatecheck();
+    console.log(validStatus)
+    if (validStatus) {
+        $('#smspin').removeClass('hide').addClass('show');
         var datastring = $(this).closest('form').serialize();
         var url = '/Home/SubmitEnquiry';
 
         Callservice(datastring, url);
-    //}
-    //else {
-    //    event.preventDefault();
-    //}
+    }
+    else {
+        event.preventDefault();
+    }
 });
 
-$('#fullname, #email, #Mobile, #message').on('input', function () {
-    
+$('#fullname, #email, #Mobile, #message').on('input', function (event) {
+    //console.log(event.currentTarget.id);
+    var Id = event.currentTarget.id;
+    Validatecheck(Id);
 });
 
-async function Validatecheck() {
+async function Validatecheck(Id = null) {
+    if (Id) {
+        if (Id === 'fullname') {
+            var fullname = $('#fullname');
+            fullname.toggleClass('error', !fullname.val());
+            fullname.toggleClass('noneerror', !!fullname.val());
+        }
+        else if (Id === 'email') {
+            var email = $('#email');
+            var isValidEmail = validateEmail(email.val());
+            email.toggleClass('error', !isValidEmail);
+            email.toggleClass('noneerror', isValidEmail);
+        }
+        else if (Id === 'Mobile') {
+            var Mobile = $('#Mobile');
+            var isValidPhone = validatePhone(Mobile.val());
+            Mobile.toggleClass('error', !isValidPhone);
+            Mobile.toggleClass('noneerror', isValidPhone);
+        }
+        else if (Id === 'message') {
+            var message = $('#message');
+            message.toggleClass('error', !message.val());
+            message.toggleClass('noneerror', !!message.val());
+        }
+        else if (Id === 'Class') {
+            var Class = $('#Class').val();
+            var Class1 = $('.Class');
+            Class1.toggleClass('error', !Class);
+            Class1.toggleClass('noneerror', !!Class);
+        }
+        else if (Id === 'subject') {
+            var subject = $('#subject').val();
+            var subject1 = $('.subject');
+            subject1.toggleClass('error', !subject);
+            subject1.toggleClass('noneerror', !!subject);
+        }
+        else if (Id === 'choiceofclass') {
+            var choiceofclass = $('#choiceofclass').val();
+            var choiceofclass1 = $('.choiceofclass');
+            choiceofclass1.toggleClass('error', !choiceofclass);
+            choiceofclass1.toggleClass('noneerror', !!choiceofclass);
+        }
+        return false;
+    }
     var fullname = $('#fullname');
     var email = $('#email');
     var Mobile = $('#Mobile');
@@ -145,7 +195,7 @@ async function Validatecheck() {
 }
 
 function validateEmail(email) {
-    var emailPattern = /^[a-zA-Z0-9._-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailPattern.test(email);
 }
 

@@ -13,6 +13,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="~/assets/img/favicon.png">
 
     <!-- CSS here -->
+    <link href="~/assets/css/toastr.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/assets/css/fontawesome.min.css">
     <link rel="stylesheet" href="~/assets/css/venobox.min.css">
@@ -24,12 +25,36 @@
     <link rel="stylesheet" href="~/assets/css/swiper.min.css">
     <link rel="stylesheet" href="~/assets/css/main.css">
     <script src="~/js/jquery-3.7.1.min.js"></script>
-    <script src="~/assets/js/callservicemethod.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+
+    <script src="~/assets/services/callservicemethod.js?v=2"></script>
+    <script src="~/assets/js/toastr.min.js"></script>
+
+    @* <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script> *@
     <style>
         .header-2 .primary-header-inner .header-right-wrap .header-menu-wrap .sub-menu .menu-item-has-children:after {
             display: none;
         }
+
+        .toast-success {
+            background-color: #28a745 !important; /* Green for success */
+            color: white; /* Ensure text is readable */
+        }
+
+        .toast-error {
+            background-color: #dc3545 !important; /* Red for error */
+            color: white;
+        }
+
+        .toast-info {
+            background-color: #17a2b8 !important; /* Blue for info */
+            color: white;
+        }
+
+        .toast-warning {
+            background-color: #ffc107 !important; /* Yellow for warning */
+            color: black; /* Ensure text is readable */
+        }
+       
     </style>
 </head>
 <body>

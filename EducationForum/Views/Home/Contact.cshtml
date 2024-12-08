@@ -7,11 +7,13 @@
 <style>
 
     .hide {
-        display: none !important;
+        display: none;
     }
 
     .show {
         display: block;
+        position: relative;
+        left: -2vh;
     }
 
     .error {
@@ -68,7 +70,7 @@
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <div class="form-item">
-                                        <input type="text" id="Mobile" name="Mobile" class="form-control" placeholder="Your Mobile Number">
+                                        <input type="text" id="Mobile" name="Mobile" class="form-control" placeholder="Your Mobile Number" maxlength="10">
                                         <div class="icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
                                     </div>
                                 </div>
@@ -117,7 +119,10 @@
                                 </div>
                             </div>
                             <div class="submit-btn">
-                                <button id="contactsubmit" class="ed-primary-btn" type="submit">Submit Message</button>
+                                <button id="contactsubmit" class="ed-primary-btn" type="button">
+                                    <span class="spinner-border spinner-border-sm" id="smspin"></span>
+                                    <span>Submit Message</span>
+                                </button>
                             </div>
 
                         </form>

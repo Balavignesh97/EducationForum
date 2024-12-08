@@ -43,7 +43,6 @@ namespace EducationForum.Controllers
         public IActionResult SubmitEnquiry(Contact obj)
         {
             DataCreationReturnMessage message = new DataCreationReturnMessage();
-            //bool Iupdated = false;
 
             StudentEnquiry studentEnquiry = new StudentEnquiry();
             studentEnquiry.Name = obj.fullname;
@@ -61,16 +60,10 @@ namespace EducationForum.Controllers
             };
             _contactservices.SubmitEnquiry(studentEnquiry);
 
-            //if (Iupdated)
-            //{
-            //    message.IscreatedSucessfully = true;
-            //    message.ErrorDisplayType = "ErrorStrip";
-            //    message.ReturnMessage = "Sucess:Orders Confirmed";
-            //    return Json(message);
-            //}
-            //message.IscreatedSucessfully = false;
-            //message.ErrorDisplayType = "ErrorStrip";
-            //message.ReturnMessage = "Failed:Problem With Order Conformation";
+            message.Status = "success";
+            message.RedirectTo = "/Home/Contact";
+            message.ReturnMessage = "Message Submited Successfully";
+            message.SpinnerID = "#smspin";
             return Json(message);
         }
         [HttpGet]
