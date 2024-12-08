@@ -1,5 +1,6 @@
 ﻿
 function Callservice(object1, object2) {
+    console.log('callservice')
     return new Promise(function (resolve, reject) {
         $.ajax({
             type: 'POST',

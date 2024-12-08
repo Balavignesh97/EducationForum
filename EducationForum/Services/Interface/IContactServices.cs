@@ -2,13 +2,13 @@
 
 namespace EducationForum.Services.Interface
 {
-    public interface ISubjectServices
+    public interface IContactServices
     {
         Task<List<Subjects>> GetSubjects();
         Task<List<Grades>> GetGrades();
         Task<List<ClassTypes>> GetClassTypes();
+        Task<List<Subjects>> GetSubjectsByGrade(short gradeID);
 
-        public void Create(StudentEnquiry studentenquiry);
-        public void Create(StudentEnquiryGradeSubjectMap studentenquirygradesubjectmap);
+        public void SubmitEnquiry(StudentEnquiry studentenquiry);
     }
 }

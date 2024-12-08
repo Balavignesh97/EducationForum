@@ -16,8 +16,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IUserServices,UserServices>();
 builder.Services.AddScoped<ICoursesServices,CoursesServices>();
 builder.Services.AddScoped<ICoursesRepository,CoursesRepository>();
-builder.Services.AddScoped<ISubjectServices, SubjectServices>();
-builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
+builder.Services.AddScoped<IContactServices, ContactServices>();
+builder.Services.AddScoped<IContactRepository, ContactRepository>();
 
 var app = builder.Build();
 

@@ -5,18 +5,18 @@ using EducationForum.Repository.Interface;
 
 namespace EducationForum.Services
 {
-    public class SubjectServices : ISubjectServices
+    public class ContactServices : IContactServices
     {
-        public ISubjectRepository _SubjectRepository { get; set; }
-        public SubjectServices(ISubjectRepository SubjectRepository)
+        public IContactRepository _contactRepository { get; set; }
+        public ContactServices(IContactRepository contactRepository)
         {
-            _SubjectRepository = SubjectRepository;
+            _contactRepository = contactRepository;
         }
         public async Task<List<Subjects>> GetSubjects()
         {
             try
             {
-                return await _SubjectRepository.GetSubjects();
+                return await _contactRepository.GetSubjects();
             }
             catch (Exception ex)
             {
@@ -27,7 +27,7 @@ namespace EducationForum.Services
         {
             try
             {
-                return await _SubjectRepository.GetGrades();
+                return await _contactRepository.GetGrades();
             }
             catch (Exception ex)
             {
@@ -39,7 +39,7 @@ namespace EducationForum.Services
         {
             try
             {
-                return await _SubjectRepository.GetClassTypes();
+                return await _contactRepository.GetClassTypes();
             }
             catch (Exception ex)
             {
@@ -47,13 +47,14 @@ namespace EducationForum.Services
             }
         }
 
-        public void Create(StudentEnquiry studentenquiry)
+        public void SubmitEnquiry(StudentEnquiry studentenquiry)
         {
-            _SubjectRepository.Insert(studentenquiry);
+            _contactRepository.Insert(studentenquiry);
         }
-        public void Create(StudentEnquiryGradeSubjectMap studentenquirygradesubjectmap)
+
+        public async Task<List<Subjects>> GetSubjectsByGrade(short gradeID)
         {
-            _SubjectRepository.Insert(studentenquirygradesubjectmap);
+            return await _contactRepository.GetSubjectsByGrade(gradeID);
         }
     }
 }

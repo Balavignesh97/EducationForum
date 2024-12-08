@@ -10,10 +10,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EducationForum.Repository
 {
-    public class SubjectRepository :RepositoryBase<object>, ISubjectRepository
+    public class ContactRepository : RepositoryBase<object>, IContactRepository
     {
         protected EForumDBContext _dbContext;
-        public SubjectRepository(EForumDBContext dbContext) : base(dbContext)
+        public ContactRepository(EForumDBContext dbContext) : base(dbContext)
         {
             _dbContext = dbContext;
         }
@@ -47,6 +47,28 @@ namespace EducationForum.Repository
             {
                 var result = await _dbContext.ClassTypes.ToListAsync();
                 return result;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<List<Subjects>> GetSubjectsByGrade(short gradeID)
+        {
+            List<Subjects> subjects = new List<Subjects>();
+            try
+            {
+                var query = (from s in _dbContext.Subjects
+                             join gsm in _dbContext.GradeSubjectMaps on s.SubjectID equals gsm.SubjectID
+                             where gsm.GradeID == gradeID
+                             select s).OrderBy(s => s.SubjectName);
+                var result = await query.ToListAsync();
+                if (result != null)
+                {
+                    subjects = result;
+                }
+                return subjects;
             }
             catch (Exception ex)
             {

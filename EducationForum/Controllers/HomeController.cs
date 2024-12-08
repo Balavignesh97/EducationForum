@@ -11,12 +11,12 @@ namespace EducationForum.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private ICoursesServices _coursesServices;
-        private ISubjectServices _subjectservices;
-        public HomeController(ILogger<HomeController> logger, ICoursesServices coursesServices, ISubjectServices subjectservices)
+        private IContactServices _contactservices;
+        public HomeController(ILogger<HomeController> logger, ICoursesServices coursesServices, IContactServices contactservices)
         {
             _logger = logger;
             _coursesServices = coursesServices;
-            _subjectservices = subjectservices;
+            _contactservices = contactservices;
         }
 
         public IActionResult Index()
@@ -40,26 +40,26 @@ namespace EducationForum.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult GetContact(Contact obj)
+        public IActionResult SubmitEnquiry(Contact obj)
         {
             DataCreationReturnMessage message = new DataCreationReturnMessage();
             //bool Iupdated = false;
 
             StudentEnquiry studentEnquiry = new StudentEnquiry();
-            StudentEnquiryGradeSubjectMap studentEnquiryGradeSubjectMap = new StudentEnquiryGradeSubjectMap();
             studentEnquiry.Name = obj.fullname;
             studentEnquiry.Email = obj.email;
             studentEnquiry.Phone = obj.Mobile;
             studentEnquiry.ClassTypeID = Convert.ToInt16(obj.choiceofclass);
             studentEnquiry.EnquirerNote = obj.message;
-            studentEnquiry.DateAdded = DateTime.Now;
-            _subjectservices.Create(studentEnquiry);
-
-            studentEnquiryGradeSubjectMap.EnquiryID = studentEnquiry.EnquiryID;
-            studentEnquiryGradeSubjectMap.GradeID = Convert.ToInt16(obj.Class);
-            studentEnquiryGradeSubjectMap.SubjectID = Convert.ToInt16(obj.subject);
-            studentEnquiryGradeSubjectMap.DateAdded = DateTime.Now;
-            _subjectservices.Create(studentEnquiryGradeSubjectMap);
+            studentEnquiry.studentEnquiryGradeSubjectMaps = new List<StudentEnquiryGradeSubjectMap>{
+                new StudentEnquiryGradeSubjectMap()
+                {
+                    EnquiryID = studentEnquiry.EnquiryID,
+                    GradeID = Convert.ToInt16(obj.Class),
+                    SubjectID = Convert.ToInt16(obj.subject)
+                }
+            };
+            _contactservices.SubmitEnquiry(studentEnquiry);
 
             //if (Iupdated)
             //{
@@ -87,12 +87,12 @@ namespace EducationForum.Controllers
                 return Json(new List<TemplateCourses>());
             }
         }
-        [HttpGet]
-        public async Task<ActionResult<List<Subjects>>> GetSubjects()
+        [HttpPost]
+        public async Task<ActionResult<List<Subjects>>> GetSubjects(short gradeID)
         {
             try
             {
-                var Subjects = await _subjectservices.GetSubjects();
+                var Subjects = await _contactservices.GetSubjectsByGrade(gradeID);
                 return Json(Subjects);
             }
             catch
@@ -105,7 +105,7 @@ namespace EducationForum.Controllers
         {
             try
             {
-                var Grades = await _subjectservices.GetGrades();
+                var Grades = await _contactservices.GetGrades();
                 return Json(Grades);
             }
             catch
@@ -118,7 +118,7 @@ namespace EducationForum.Controllers
         {
             try
             {
-                var classtypes = await _subjectservices.GetClassTypes();
+                var classtypes = await _contactservices.GetClassTypes();
                 return Json(classtypes);
             }
             catch

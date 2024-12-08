@@ -1,6 +1,6 @@
 ﻿(function () {
+    $('#SubjectChoiseOfClassRow').hide();
     BindGradeDD();
-    BindSubjectDD();
     BindClassTypeDD();
 })();
 
@@ -10,8 +10,6 @@ function BindGradeDD() {
         url: '/Home/GetGrades',
         dataType: 'json',
         success: function (response) {
-            console.log('Grade')
-            console.log(response)
             var DDOptions = ''
             for (var i = 0; i < response.length; i++) {
                 DDOptions += '<li data-value="' + response[i].gradeID + '" class="option">' + response[i].grade + '</li>';
@@ -22,32 +20,29 @@ function BindGradeDD() {
     });
 
 }
-function BindSubjectDD() {
+$(document).on('click', '#ClassDD .option', function () {
     $.ajax({
-        type: 'GET',
+        type: 'POST',
         url: '/Home/GetSubjects',
+        data: { gradeID: $('#ClassDD .option.selected').data('value') },
         dataType: 'json',
         success: function (response) {
-            console.log('Subject')
-            console.log(response)
             var DDOptions = ''
             for (var i = 0; i < response.length; i++) {
                 DDOptions += '<li data-value="' + response[i].subjectID + '" class="option">' + response[i].subjectName + '</li>';
             }
             $("#SubjectDD").html(DDOptions);
+            $('#SubjectChoiseOfClassRow').show();
         },
         async: true
     });
-
-}
+});
 function BindClassTypeDD() {
     $.ajax({
         type: 'GET',
         url: '/Home/GetClassTypes',
         dataType: 'json',
         success: function (response) {
-            console.log('Classtype')
-            console.log(response)
             var DDOptions = ''
             for (var i = 0; i < response.length; i++) {
                 DDOptions += '<li data-value="' + response[i].classTypeID + '" class="option">' + response[i].classType + '</li>';
@@ -68,7 +63,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const selectedValue = event.target.getAttribute('data-value');
             $('#subject').val(selectedValue);
-            Validatecheck();
         }
     });
 
@@ -80,7 +74,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const selectedValue = event.target.getAttribute('data-value');
             $('#choiceofclass').val(selectedValue);
-            Validatecheck();
         }
     });
 
@@ -92,27 +85,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const selectedValue = event.target.getAttribute('data-value');
             $('#Class').val(selectedValue);
-            Validatecheck();
         }
     });
 });
 
 
 $('#contactsubmit').click(async function (event) {
-    var validStatus = await Validatecheck();
-    if (validStatus) {
+    console.log('click')
+    //var validStatus = await Validatecheck();
+    //console.log(validStatus)
+    //if (validStatus) {
         var datastring = $(this).closest('form').serialize();
-        var url = '/Home/GetContact';
+        var url = '/Home/SubmitEnquiry';
 
         Callservice(datastring, url);
-    }
-    else {
-        event.preventDefault();
-    }
+    //}
+    //else {
+    //    event.preventDefault();
+    //}
 });
 
 $('#fullname, #email, #Mobile, #message').on('input', function () {
-    Validatecheck();
+    
 });
 
 async function Validatecheck() {
