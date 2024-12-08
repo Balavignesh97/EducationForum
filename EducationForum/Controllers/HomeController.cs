@@ -11,10 +11,12 @@ namespace EducationForum.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private ICoursesServices _coursesServices;
-        public HomeController(ILogger<HomeController> logger, ICoursesServices coursesServices)
+        private IContactServices _contactservices;
+        public HomeController(ILogger<HomeController> logger, ICoursesServices coursesServices, IContactServices contactservices)
         {
             _logger = logger;
             _coursesServices = coursesServices;
+            _contactservices = contactservices;
         }
 
         public IActionResult Index()
@@ -33,22 +35,95 @@ namespace EducationForum.Controllers
         {
             return View();
         }
-        public IActionResult Contact(int subjectId=0)
+        public IActionResult Contact(int subjectId = 0)
         {
             return View();
+        }
+        [HttpPost]
+        public IActionResult SubmitEnquiry(Contact obj)
+        {
+            DataCreationReturnMessage message = new DataCreationReturnMessage();
+            //bool Iupdated = false;
+
+            StudentEnquiry studentEnquiry = new StudentEnquiry();
+            studentEnquiry.Name = obj.fullname;
+            studentEnquiry.Email = obj.email;
+            studentEnquiry.Phone = obj.Mobile;
+            studentEnquiry.ClassTypeID = Convert.ToInt16(obj.choiceofclass);
+            studentEnquiry.EnquirerNote = obj.message;
+            studentEnquiry.studentEnquiryGradeSubjectMaps = new List<StudentEnquiryGradeSubjectMap>{
+                new StudentEnquiryGradeSubjectMap()
+                {
+                    EnquiryID = studentEnquiry.EnquiryID,
+                    GradeID = Convert.ToInt16(obj.Class),
+                    SubjectID = Convert.ToInt16(obj.subject)
+                }
+            };
+            _contactservices.SubmitEnquiry(studentEnquiry);
+
+            //if (Iupdated)
+            //{
+            //    message.IscreatedSucessfully = true;
+            //    message.ErrorDisplayType = "ErrorStrip";
+            //    message.ReturnMessage = "Sucess:Orders Confirmed";
+            //    return Json(message);
+            //}
+            //message.IscreatedSucessfully = false;
+            //message.ErrorDisplayType = "ErrorStrip";
+            //message.ReturnMessage = "Failed:Problem With Order Conformation";
+            return Json(message);
         }
         [HttpGet]
         public async Task<ActionResult<List<TemplateCourses>>> GetTemplateCourseDetails()
         {
             List<TemplateCourses> Courses = new List<TemplateCourses>();
             Courses = await _coursesServices.GetTemplateCourseDetails();
-            if(Courses!=null && Courses.Count() > 0)
+            if (Courses != null && Courses.Count() > 0)
             {
                 return Json(Courses);
             }
             else
             {
                 return Json(new List<TemplateCourses>());
+            }
+        }
+        [HttpPost]
+        public async Task<ActionResult<List<Subjects>>> GetSubjects(short gradeID)
+        {
+            try
+            {
+                var Subjects = await _contactservices.GetSubjectsByGrade(gradeID);
+                return Json(Subjects);
+            }
+            catch
+            {
+                return Json(new List<Subjects>());
+            }
+        }
+        [HttpGet]
+        public async Task<ActionResult<List<Grades>>> GetGrades()
+        {
+            try
+            {
+                var Grades = await _contactservices.GetGrades();
+                return Json(Grades);
+            }
+            catch
+            {
+                return Json(new List<Grades>());
+            }
+        }
+        [HttpGet]
+        public async Task<ActionResult<List<ClassTypes>>> GetClassTypes()
+        {
+            try
+            {
+                var classtypes = await _contactservices.GetClassTypes();
+                return Json(classtypes);
+            }
+            catch
+            {
+                return Json(new List<ClassTypes>());
             }
         }
         public IActionResult Privacy()

@@ -1,10 +1,27 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Contact";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
+<style>
+
+    .hide {
+        display: none !important;
+    }
+
+    .show {
+        display: block;
+    }
+
+    .error {
+        border-color: red !important;
+    }
+
+    .noneerror {
+        border-color: green !important;
+    }
+</style>
 
 <section class="page-header">
     <div class="bg-item">
@@ -33,7 +50,7 @@
                     <h2 class="title mb-0">Leave A Reply</h2>
                     <p class="mb-30 mt-10">Fill-up The Form and Message us of your amazing question</p>
                     <div class="request-form">
-                        <form action="mail.php" method="post" id="ajax_contact" class="form-horizontal">
+                        <form  id="from_contact" class="form-horizontal">
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <div class="form-item">
@@ -49,9 +66,45 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-item">
-                                        <div class="nice-select select-control form-control country" tabindex="0"><span class="current">Select Subject</span><ul class="list"><li data-value="" class="option selected focus">Select Subject</li><li data-value="vdt" class="option">Plan One</li><li data-value="can" class="option">Plan Two</li><li data-value="uk" class="option">Plan Three</li></ul></div>
+                                        <input type="text" id="Mobile" name="Mobile" class="form-control" placeholder="Your Mobile Number">
+                                        <div class="icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="hidden" name="Class" id="Class" />
+                                    <div class="form-item">
+                                        <div class="nice-select select-control form-control country Class" tabindex="0" name="Classdiv" required>
+                                            <span class="current">Select Class</span>
+                                            <ul class="list" id="ClassDD">
+                                                <li data-value="" class="option selected focus">Loading...</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row" id="SubjectChoiseOfClassRow">
+                                <input type="hidden" name="subject" id="subject" />
+                                <input type="hidden" name="choiceofclass" id="choiceofclass" />
+                                <div class="col-md-6">
+                                    <div class="form-item">
+                                        <div class="nice-select select-control form-control country subject" tabindex="0">
+                                            <span class="current" name="current">Select Subject</span>
+                                            <ul class="list" id="SubjectDD">
+                                                <li data-value="" class="option selected focus">Loading...</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-item">
+                                        <div class="nice-select select-control form-control country choiceofclass" tabindex="0">
+                                            <span class="current">Choice Of Class</span>
+                                            <ul class="list" id="ChoiseOfClassDD">
+                                                <li data-value="" class="option selected focus">Loadeing...</li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -64,8 +117,9 @@
                                 </div>
                             </div>
                             <div class="submit-btn">
-                                <button id="submit" class="ed-primary-btn" type="submit">Submit Message</button>
+                                <button id="contactsubmit" class="ed-primary-btn" type="submit">Submit Message</button>
                             </div>
+
                         </form>
                     </div>
                 </div>
@@ -120,4 +174,4 @@
     </div>
 </section>
 <!-- ./ contact-section -->
-
+<script src="~/assets/services/contact_service.js"></script>

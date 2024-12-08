@@ -19,6 +19,14 @@ namespace EducationForum.DataAccess
         public DbSet<MasterUserType> UserTypes { get; set; } = null!;
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<TemplateCourses> TemplateCourses { get; set; } = null!;
+
+        public DbSet<Subjects> Subjects { get; set; } = null!;
+        public DbSet<Grades> Grades { get; set; } = null!;
+        public DbSet<ClassTypes> ClassTypes { get; set; } = null!;
+        public DbSet<StudentEnquiry> StudentEnquiry { get; set; } = null!;
+        public DbSet<StudentEnquiryGradeSubjectMap> StudentEnquiryGradeSubjectMap { get; set; } = null!;
+        public DbSet<GradeSubjectMap> GradeSubjectMaps { get; set; } = null!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MasterState>(entity =>
@@ -61,6 +69,34 @@ namespace EducationForum.DataAccess
                 entity.Property(e => e.DateAdded).HasDefaultValueSql("(GETDATE())");
             });
 
+
+            modelBuilder.Entity<Subjects>().ToTable("Subjects", "EForumMaster");
+            modelBuilder.Entity<Grades>().ToTable("Grade", "EForumMaster");
+            modelBuilder.Entity<ClassTypes>().ToTable("ClassType", "EForumMaster");
+            modelBuilder.Entity<StudentEnquiry>(entity =>
+            {
+                entity.ToTable("StudentEnquiry", "EForum");
+                entity.Property(e => e.DateAdded).HasDefaultValueSql("(GETDATE())");
+
+                entity.HasMany(e => e.studentEnquiryGradeSubjectMaps).WithOne(e => e.StudentEnquiry)
+                .HasForeignKey(e => e.EnquiryID)
+                .HasConstraintName("FK_StudentEnquiry_studentEnquiryGradeSubjectMaps");
+            });
+            modelBuilder.Entity<StudentEnquiryGradeSubjectMap>(entity =>
+            {
+                entity.ToTable("StudentEnquiryGradeSubjectMap", "EForum");
+                entity.Property(e => e.DateAdded).HasDefaultValueSql("(GETDATE())");
+                //entity.HasOne(e => e.StudentEnquiry)
+                //.WithMany(e => e.studentEnquiryGradeSubjectMaps)
+                //.HasForeignKey(e => e.EnquiryID)
+                //.HasConstraintName("FK_studentEnquiryGradeSubjectMaps_StudentEnquiry");
+            });
+            modelBuilder.Entity<GradeSubjectMap>(entity =>
+            {
+                entity.ToTable("GradeSubjectMap", "EForum");
+                entity.Property(e => e.IsActive).HasDefaultValueSql("(1)");
+                entity.Property(e => e.DateAdded).HasDefaultValueSql("(GETDATE())");
+            });
         }
     }
 }

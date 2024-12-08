@@ -8,7 +8,7 @@ using EducationForum.Repository;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContextPool<EForumDBContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("EForumConnection"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("EForumConnection"),b => b.MigrationsAssembly("EducationForum"));
 });
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -16,6 +16,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IUserServices,UserServices>();
 builder.Services.AddScoped<ICoursesServices,CoursesServices>();
 builder.Services.AddScoped<ICoursesRepository,CoursesRepository>();
+builder.Services.AddScoped<IContactServices, ContactServices>();
+builder.Services.AddScoped<IContactRepository, ContactRepository>();
 
 var app = builder.Build();
 
