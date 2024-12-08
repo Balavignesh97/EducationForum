@@ -26,6 +26,7 @@ namespace EducationForum.DataAccess
         public DbSet<StudentEnquiry> StudentEnquiry { get; set; } = null!;
         public DbSet<StudentEnquiryGradeSubjectMap> StudentEnquiryGradeSubjectMap { get; set; } = null!;
         public DbSet<GradeSubjectMap> GradeSubjectMaps { get; set; } = null!;
+        public DbSet<MasterInstructiveLanguage> MasterInstructiveLanguages { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -96,6 +97,11 @@ namespace EducationForum.DataAccess
                 entity.ToTable("GradeSubjectMap", "EForum");
                 entity.Property(e => e.IsActive).HasDefaultValueSql("(1)");
                 entity.Property(e => e.DateAdded).HasDefaultValueSql("(GETDATE())");
+            });
+            modelBuilder.Entity<MasterInstructiveLanguage>(entity =>
+            {
+                entity.HasKey(e => e.InstructiveLanguageID);
+                entity.ToTable("InstructiveLanguage", "EForumMaster");
             });
         }
     }

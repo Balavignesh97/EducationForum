@@ -1,4 +1,5 @@
 using EducationForum.Domain;
+using EducationForum.Domain.ViewModels;
 using EducationForum.Models;
 using EducationForum.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
@@ -40,7 +41,7 @@ namespace EducationForum.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult SubmitEnquiry(Contact obj)
+        public IActionResult SubmitEnquiry(ContactVM obj)
         {
             DataCreationReturnMessage message = new DataCreationReturnMessage();
 
@@ -50,6 +51,7 @@ namespace EducationForum.Controllers
             studentEnquiry.Phone = obj.Mobile;
             studentEnquiry.ClassTypeID = Convert.ToInt16(obj.choiceofclass);
             studentEnquiry.EnquirerNote = obj.message;
+            studentEnquiry.InstructiveLanguageID = Convert.ToInt16(obj.instructiveLanguage);
             studentEnquiry.studentEnquiryGradeSubjectMaps = new List<StudentEnquiryGradeSubjectMap>{
                 new StudentEnquiryGradeSubjectMap()
                 {
@@ -61,7 +63,7 @@ namespace EducationForum.Controllers
             _contactservices.SubmitEnquiry(studentEnquiry);
 
             message.Status = "success";
-            message.RedirectTo = "/Home/Contact";
+            message.RedirectTo = "";
             message.ReturnMessage = "Message Submited Successfully";
             message.SpinnerID = "#smspin";
             return Json(message);
@@ -117,6 +119,19 @@ namespace EducationForum.Controllers
             catch
             {
                 return Json(new List<ClassTypes>());
+            }
+        }
+        [HttpGet]
+        public async Task<ActionResult<List<MasterInstructiveLanguage>>> GetInstructiveLanguage()
+        {
+            try
+            {
+                var classtypes = await _contactservices.GetInstructiveLanguage();
+                return Json(classtypes);
+            }
+            catch
+            {
+                return Json(new List<MasterInstructiveLanguage>());
             }
         }
         public IActionResult Privacy()

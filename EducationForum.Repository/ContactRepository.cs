@@ -53,6 +53,18 @@ namespace EducationForum.Repository
                 throw;
             }
         }
+        public async Task<List<MasterInstructiveLanguage>> GetInstructiveLanguage()
+        {
+            try
+            {
+                var result = await _dbContext.MasterInstructiveLanguages.ToListAsync();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         public async Task<List<Subjects>> GetSubjectsByGrade(short gradeID)
         {

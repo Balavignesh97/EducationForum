@@ -2,6 +2,7 @@
     $('#SubjectChoiseOfClassRow').hide();
     BindGradeDD();
     BindClassTypeDD();
+    BindInstructiveLanguageDD();
 })();
 
 function BindGradeDD() {
@@ -53,6 +54,22 @@ function BindClassTypeDD() {
     });
 
 }
+function BindInstructiveLanguageDD() {
+    $.ajax({
+        type: 'GET',
+        url: '/Home/GetInstructiveLanguage',
+        dataType: 'json',
+        success: function (response) {
+            var DDOptions = ''
+            for (var i = 0; i < response.length; i++) {
+                DDOptions += '<li data-value="' + response[i].instructiveLanguageID + '" class="option">' + response[i].language + '</li>';
+            }
+            $("#InstructiveLanguageDD").html(DDOptions);
+        },
+        async: true
+    });
+
+}
 document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelector('.subject').addEventListener('click', function (event) {
@@ -88,6 +105,18 @@ document.addEventListener('DOMContentLoaded', function () {
             const selectedValue = event.target.getAttribute('data-value');
             $('#Class').val(selectedValue);
             Validatecheck('Class');
+        }
+    });
+
+    document.querySelector('.instructiveLanguage').addEventListener('click', function (event) {
+        if (event.target && event.target.classList.contains('option')) {
+            const options = document.querySelectorAll('.instructiveLanguage .option');
+            options.forEach(option => option.classList.remove('selected', 'focus'));
+            event.target.classList.add('selected', 'focus');
+
+            const selectedValue = event.target.getAttribute('data-value');
+            $('#instructiveLanguage').val(selectedValue);
+            Validatecheck('instructiveLanguage');
         }
     });
 });
@@ -158,6 +187,12 @@ async function Validatecheck(Id = null) {
             choiceofclass1.toggleClass('error', !choiceofclass);
             choiceofclass1.toggleClass('noneerror', !!choiceofclass);
         }
+        else if (Id === 'instructiveLanguage') {
+            var instructiveLanguage = $('#instructiveLanguage').val();
+            var instructiveLanguage1 = $('.instructiveLanguage');
+            instructiveLanguage1.toggleClass('error', !instructiveLanguage);
+            instructiveLanguage1.toggleClass('noneerror', !!instructiveLanguage);
+        }
         return false;
     }
     var fullname = $('#fullname');
@@ -166,9 +201,11 @@ async function Validatecheck(Id = null) {
     var Class = $('#Class').val();
     var subject = $('#subject').val();
     var choiceofclass = $('#choiceofclass').val();
+    var instructiveLanguage = $('#instructiveLanguage').val();
     var Class1 = $('.Class');
     var subject1 = $('.subject');
     var choiceofclass1 = $('.choiceofclass');
+    var instructiveLanguage1 = $('.instructiveLanguage');
     var message = $('#message');
 
     var isValidEmail = validateEmail(email.val());
@@ -181,6 +218,7 @@ async function Validatecheck(Id = null) {
     Class1.toggleClass('error', !Class);
     subject1.toggleClass('error', !subject);
     choiceofclass1.toggleClass('error', !choiceofclass);
+    instructiveLanguage1.toggleClass('error', !instructiveLanguage);
 
     fullname.toggleClass('noneerror', !!fullname.val());
     email.toggleClass('noneerror', isValidEmail);
@@ -189,9 +227,10 @@ async function Validatecheck(Id = null) {
     Class1.toggleClass('noneerror', !!Class);
     subject1.toggleClass('noneerror', !!subject);
     choiceofclass1.toggleClass('noneerror', !!choiceofclass);
+    instructiveLanguage1.toggleClass('noneerror', !!instructiveLanguage);
 
 
-    return fullname.val() && isValidEmail && isValidPhone && message.val() && Class && subject && choiceofclass;
+    return fullname.val() && isValidEmail && isValidPhone && message.val() && Class && subject && choiceofclass && instructiveLanguage;
 }
 
 function validateEmail(email) {

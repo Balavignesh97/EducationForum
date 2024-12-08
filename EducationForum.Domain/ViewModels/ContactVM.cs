@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace EducationForum.Domain
+namespace EducationForum.Domain.ViewModels
 {
-    public class Contact
+    public class ContactVM
     {
         public string fullname { get; set; }
         public string email { get; set; }
@@ -10,6 +10,7 @@ namespace EducationForum.Domain
         public string Class { get; set; }
         public string subject { get; set; }
         public string choiceofclass { get; set; }
+        public string instructiveLanguage { get; set; }
         public string message { get; set; }
         public DateTime? DateAdded { get; set; }
     }

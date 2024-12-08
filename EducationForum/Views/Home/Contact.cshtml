@@ -59,6 +59,7 @@
                                         <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Your Name">
                                         <div class="icon"><i class="fa-regular fa-user"></i></div>
                                     </div>
+                                    <p class="error">required</p>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-item">
@@ -89,6 +90,7 @@
                             <div class="form-group row" id="SubjectChoiseOfClassRow">
                                 <input type="hidden" name="subject" id="subject" />
                                 <input type="hidden" name="choiceofclass" id="choiceofclass" />
+                                <input type="hidden" name="instructiveLanguage" id="instructiveLanguage" />
                                 <div class="col-md-6">
                                     <div class="form-item">
                                         <div class="nice-select select-control form-control country subject" tabindex="0">
@@ -104,6 +106,18 @@
                                         <div class="nice-select select-control form-control country choiceofclass" tabindex="0">
                                             <span class="current">Choice Of Class</span>
                                             <ul class="list" id="ChoiseOfClassDD">
+                                                <li data-value="" class="option selected focus">Loadeing...</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <div class="form-item">
+                                        <div class="nice-select select-control form-control country instructiveLanguage" tabindex="0">
+                                            <span class="current">InstructiveLanguage</span>
+                                            <ul class="list" id="InstructiveLanguageDD">
                                                 <li data-value="" class="option selected focus">Loadeing...</li>
                                             </ul>
                                         </div>
