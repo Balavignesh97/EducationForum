@@ -12,5 +12,6 @@ namespace EducationForum.Domain
         public string? SpinnerID { get; set; }
         public string? ButtonSubmited { get; set; }
         public string? RedirectTo { get; set; }
+        public string? Status { get; set; }
     }
 }
