@@ -11,7 +11,7 @@ function Callservice(object1, object2) {
             success: function (data) {
                 console.log(data)
                 var payload = data;
-                if (payload) {
+                if (payload && payload?.errorType=='toster') {
                     toastr.options = {
                         "closeButton": true,
                         "debug": true,
@@ -39,6 +39,16 @@ function Callservice(object1, object2) {
                     } else if (payload.status === "warning") {
                         toastr.warning(payload.returnMessage);
                     }
+                }
+                else if (payload && payload?.errorType == 'sweet') {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: payload.title,
+                        text: payload.returnMessage,
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
                 }
                 $(payload.spinnerID).removeClass('show').addClass('hide');
             }
