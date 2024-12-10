@@ -44,6 +44,50 @@
     position: relative;
     overflow: hidden;
 }
+.course-content {
+    font-family: Arial, sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 400px;
+    margin: 20px auto;
+    background-color: #f9f9f9;
+}
+
+    .course-content .title {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+.course-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+    .course-list li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+        .course-list li i {
+            margin-right: 10px;
+            color: #555;
+            font-size: 1.2rem;
+        }
+
+        .course-list li span {
+            line-height: 1.5;
+            font-size: 1rem;
+        }
+
+        .course-list li strong {
+            font-weight: bold;
+            color: #333;
+        }
+
 
 /* Shimmer Animation */
 @keyframes shimmer {

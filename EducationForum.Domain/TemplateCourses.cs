@@ -17,8 +17,12 @@ namespace EducationForum.Domain
         public short GradeFrom { get; set; }
         public short GradeTo { get; set; }
         public bool IsGroupClassAvailable { get; set; }
+        public string? GroupClassDesc { get; set; }
         public short? MaxStudentForGroupClass { get; set; }
         public bool IsIndividualClassAvailable { get; set; }
+        public string? IndividualClassDesc { get; set; }
+        public bool IsTopicsAvilable { get; set; }
+        public string? TopicsDesc { get; set; }
         public short? InstructorID { get; set; }
         public bool IsActive { get; set; } = true;
         public DateTime? DeactivatedOn { get; set; }
@@ -28,5 +32,6 @@ namespace EducationForum.Domain
         public DateTime DateAdded { get; set; } = DateTime.Now;
         public int? UpdatedBy { get; set; }
         public DateTime? DateUpdated { get; set; }
+        public string? OtherDesc { get; set; }
     }
 }

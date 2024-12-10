@@ -13,19 +13,37 @@ function BindCourseDetails() {
                 var Grade = '';
                 var GroupClass = '';
                 var IndividualClasses = '';
+                var Topics = '';
+                var OtherDescription = '';
+                console.log(prop)
 
-                if (prop['isGroupClassAvailable']) {
-                    GroupClass = '<li><i class="fa-light fa-user-group"></i><span>Group Class : </span>Max ' + prop['maxStudentForGroupClass'] + ' Students</li>';
-                }
                 if (prop['isIndividualClassAvailable']) {
-                    IndividualClasses = '<li><i class="fa-light fa-user"></i><span>Individual class available </span></li>';
+                    if (prop['individualClassDesc'] === undefined || prop['individualClassDesc'] === '' || prop['individualClassDesc'] === null) {
+                        IndividualClasses = '<li><i class="fa-light fa-user"></i><span><strong>Individual class available </strong></span></li>';
+                    }
+                    else {
+                        IndividualClasses = '<li><i class="fa-light fa-user"></i><span><strong>Individual class : </strong><span>' + prop['individualClassDesc'] + ' </span></li>';
+                    }
+                }
+                if (prop['isGroupClassAvailable']) {
+                    if (prop['groupClassDesc'] === undefined || prop['groupClassDesc'] === '' || prop['groupClassDesc'] === null) {
+                        GroupClass = '<li><i class="fa-light fa-user-group"></i><span><strong>Group Class : </strong><span>Max ' + prop['maxStudentForGroupClass'] + ' Students</span></span></li>';
+                    }
+                    else {
+                        GroupClass = '<li><i class="fa-light fa-user-group"></i><span><strong>Group Class : </strong><span>' + prop['groupClassDesc'] + '</span></span></li>';
+                    }
+                }
+                if (prop['isTopicsAvilable'] && prop['topicsDesc'] !== undefined && prop['topicsDesc'] !== '' && prop['topicsDesc'] !== null) {
+                    Topics = '<li><i class="fa-light fa-list-alt"></i><span><strong>Topics : </strong><span>' + prop['topicsDesc'] + '</span></span></li>';
                 }
                 if (prop['gradeFrom'] !== '' && prop['gradeFrom'] !== undefined && prop['gradeTo'] !== '' && prop['gradeTo'] !== undefined) {
-                    Grade = '<li><i class="fa-light fa-file"></i><span>Grade : </span>' + prop['gradeFrom'] + 'th - ' + prop['gradeTo'] + 'th</li>';
+                    Grade = '<li><i class="fa-light fa-file"></i><span><strong>Grade : </strong><span>' + prop['gradeFrom'] + 'th - ' + prop['gradeTo'] + 'th</span></span></li>';
                 } else if (prop['gradeFrom'] !== '' && prop['gradeFrom'] !== undefined) {
-                    Grade = '<li><i class="fa-light fa-file"></i><span>Grade : </span>' + prop['gradeFrom'] + 'th</li>';
+                    Grade = '<li><i class="fa-light fa-file"></i><span><strong>Grade : </strong><span>' + prop['gradeFrom'] + 'th</span></span></li>';
                 }
-
+                if (prop['otherDesc'] && prop['otherDesc'] !== undefined && prop['otherDesc'] !== '' && prop['otherDesc'] !== null) {
+                    OtherDescription = '<li style="font-size: small;">' + prop['topicsDesc'] + '</li>';
+                }
                 var Wrap =
                     `<div class="col-xl-4 col-lg-6 col-md-6">
                         <div class="course-item wow fade-in-bottom" data-wow-delay="200ms">
@@ -39,7 +57,7 @@ function BindCourseDetails() {
                                     <a href="/Home/Contact?subjectId=` + prop['subjectID'] + `">` + prop['courseHeading'] + `</a>
                                 </h3>
                                 <ul class="course-list">
-                                    ` + Grade + GroupClass + IndividualClasses + `
+                                    ` + Grade + IndividualClasses + GroupClass + Topics + OtherDescription + `
                                 </ul>
                             </div>
                             <div class="bottom-content">

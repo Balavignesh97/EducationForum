@@ -5877,7 +5877,7 @@ START: Course CSS
 .course-item .bottom-content {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: end;
   padding: 0 30px 20px 30px;
 }
 .course-item .bottom-content .price {
@@ -5886,12 +5886,14 @@ START: Course CSS
   font-weight: 700;
 }
 .course-item .bottom-content .course-btn {
-  color: var(--ed-color-heading-primary);
+  /*color: var(--ed-color-heading-primary);*/
+  color: white;
   font-size: 16px;
   font-weight: 600;
   padding: 5px 20px;
   border: 1px solid #E0E5EB;
   border-radius: 100px;
+  background-color: rgb(7, 166, 152);
 }
 .course-item .bottom-content .course-btn:hover {
   border: 1px solid var(--ed-color-theme-primary);
