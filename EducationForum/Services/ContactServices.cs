@@ -46,6 +46,17 @@ namespace EducationForum.Services
                 throw;
             }
         }
+        public async Task<List<MasterInstructiveLanguage>> GetInstructiveLanguage()
+        {
+            try
+            {
+                return await _contactRepository.GetInstructiveLanguage();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         public void SubmitEnquiry(StudentEnquiry studentenquiry)
         {

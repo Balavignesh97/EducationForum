@@ -18,8 +18,4 @@
     <ProjectReference Include="..\EducationForum.Repository\EducationForum.Repository.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DataContext\" />
-  </ItemGroup>
-
 </Project>

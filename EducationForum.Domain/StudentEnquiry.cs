@@ -18,6 +18,7 @@ namespace EducationForum.Domain
         public string? Email { get; set; }
         public string? Phone { get; set; }
         public short? ClassTypeID { get; set; }
+        public short? InstructiveLanguageID { get; set; }
         public string? EnquirerNote { get; set; }
         public string? ResponderNote { get; set; }
         public bool IsResponded { get; set; }
