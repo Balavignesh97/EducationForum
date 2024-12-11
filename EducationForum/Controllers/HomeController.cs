@@ -65,8 +65,8 @@ namespace EducationForum.Controllers
             message.ErrorType = "sweet";
             message.Status = "success";
             message.RedirectTo = "";
-            message.title = "Thnak You For";
-            message.ReturnMessage = "Our Team Will Contact You Soon";
+            message.title = "Thank you for reaching out!";
+            message.ReturnMessage = "Our Team will get back to you soon.";
             message.SpinnerID = "#smspin";
             return Json(message);
         }
