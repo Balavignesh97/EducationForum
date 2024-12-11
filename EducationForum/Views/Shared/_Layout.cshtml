@@ -26,8 +26,10 @@
     <link rel="stylesheet" href="~/assets/css/main.css">
     <script src="~/js/jquery-3.7.1.min.js"></script>
 
-    <script src="~/assets/services/callservicemethod.js?v=2"></script>
+    <script src="~/assets/services/callservicemethod.js?v=3"></script>
     <script src="~/assets/js/toastr.min.js"></script>
+    <script src="~/assets/js/sweetalert2@11.js"></script>
+    
 
     @* <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script> *@
     <style>
@@ -53,6 +55,14 @@
         .toast-warning {
             background-color: #ffc107 !important; /* Yellow for warning */
             color: black; /* Ensure text is readable */
+        }
+
+        .toast-center {
+            position: fixed;
+            top: 18%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999; /* Ensure it's on top of other elements */
         }
        
     </style>
@@ -345,7 +355,7 @@
     <!-- ./ footer-section -->
 
     <div id="scrollup">
-        <button id="scroll-top" class="scroll-to-top"><i class="fa-regular fa-arrow-up-long"></i></button>
+        <button id="scroll-top" class="scroll-to-top"><i class="fa-solid fa-arrow-up"></i></button>
     </div>
     <!--scrollup-->
     <!-- JS here -->

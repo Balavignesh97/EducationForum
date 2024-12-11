@@ -62,9 +62,11 @@ namespace EducationForum.Controllers
             };
             _contactservices.SubmitEnquiry(studentEnquiry);
 
+            message.ErrorType = "sweet";
             message.Status = "success";
             message.RedirectTo = "";
-            message.ReturnMessage = "Message Submited Successfully";
+            message.title = "Thnak You For";
+            message.ReturnMessage = "Our Team Will Contact You Soon";
             message.SpinnerID = "#smspin";
             return Json(message);
         }
