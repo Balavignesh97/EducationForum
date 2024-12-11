@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EducationForum", "Education
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EducationForum.Domain", "EducationForum.Domain\EducationForum.Domain.csproj", "{74EBF733-BCF4-41A9-AC37-EE8282C30DB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EducationForum.Repository", "EducationForum.Repository\EducationForum.Repository.csproj", "{AD9A7C4D-8E39-4BCF-A9F8-AB2F1C70AE09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EducationForum.Repository", "EducationForum.Repository\EducationForum.Repository.csproj", "{AD9A7C4D-8E39-4BCF-A9F8-AB2F1C70AE09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EducationForum.DataAccess", "EducationForum.DataAccess\EducationForum.DataAccess.csproj", "{2A9EFE7D-E81C-48AC-A124-A5A95699B472}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EducationForum.DataAccess", "EducationForum.DataAccess\EducationForum.DataAccess.csproj", "{2A9EFE7D-E81C-48AC-A124-A5A95699B472}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

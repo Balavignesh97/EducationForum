@@ -1,4 +1,6 @@
-﻿
+﻿$.ajaxSetup({
+    cache: false
+});
 function Callservice(object1, object2) {
     console.log('callservice')
     return new Promise(function (resolve, reject) {
@@ -50,7 +52,8 @@ function Callservice(object1, object2) {
                         timer: 2000
                     });
                 }
-                $(payload.spinnerID).removeClass('show').addClass('hide');
+                $(payload.spinnerID).hide();
+                $(payload.buttonID).prop("disabled", false);
             }
 
         });

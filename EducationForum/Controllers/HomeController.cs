@@ -68,6 +68,7 @@ namespace EducationForum.Controllers
             message.title = "Thank you for reaching out!";
             message.ReturnMessage = "Our Team will get back to you soon.";
             message.SpinnerID = "#smspin";
+            message.ButtonID = "";
             return Json(message);
         }
         [HttpGet]

@@ -10,6 +10,7 @@ namespace EducationForum.Domain
         public string? ErrorType { get; set; }
         public string? ErrorDisplayType { get; set; }
         public string? SpinnerID { get; set; }
+        public string? ButtonID { get; set; }
         public string? ButtonSubmited { get; set; }
         public string? RedirectTo { get; set; }
         public string? Status { get; set; }
