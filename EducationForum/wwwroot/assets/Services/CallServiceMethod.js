@@ -51,6 +51,13 @@ function Callservice(object1, object2) {
                         showConfirmButton: false,
                         timer: 2000
                     });
+
+                    if (payload?.redirectTo) {
+                        setTimeout(function () {
+                            window.location.href = window.location.origin + payload.redirectTo;
+                        }, 2000)
+                    }
+                    
                 }
                 $(payload.spinnerID).hide();
                 $(payload.buttonID).prop("disabled", false);

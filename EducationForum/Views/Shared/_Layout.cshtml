@@ -23,12 +23,12 @@
     <link rel="stylesheet" href="~/assets/css/nice-select.css">
     <link rel="stylesheet" href="~/assets/css/daterangepicker.css">
     <link rel="stylesheet" href="~/assets/css/swiper.min.css">
-    <link rel="stylesheet" href="~/assets/css/main.css"> 
-
-    <script src="~/assets/services/callservicemethod.js?v=3"></script>
+    <link rel="stylesheet" href="~/assets/css/main.css">
+    <script src="~/js/jquery-3.7.1.min.js"></script>
+    <script src="~/assets/services/callservicemethod.js?v=4"></script>
     <script src="~/assets/js/toastr.min.js"></script>
     <script src="~/assets/js/sweetalert2@11.js"></script>
-    
+
 
     @* <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script> *@
     <style>
@@ -63,7 +63,6 @@
             transform: translate(-50%, -50%);
             z-index: 9999; /* Ensure it's on top of other elements */
         }
-       
     </style>
 </head>
 <body>
@@ -90,8 +89,8 @@
                     </div>
                     <div class="top-bar-right">
                         @* <div class="register-box">
-                            <div class="icon"><i class="fa-regular fa-user"></i></div>
-                            <a href="#">Login / Register</a>
+                        <div class="icon"><i class="fa-regular fa-user"></i></div>
+                        <a href="#">Login / Register</a>
                         </div> *@
                         <div class="top-social-wrap">
                             <span>Follow Us</span>
@@ -157,7 +156,7 @@
                                     <li><a href="checkout.html">Checkout</a></li>
                                     </ul>
                                     </li> *@
-                                   
+
                                     @* <li class="menu-item-has-children">
                                     <a href="blog-grid.html">Blog</a>
                                     <ul>
@@ -167,7 +166,7 @@
                                     <li><a href="blog-details.html">Blog Details</a></li>
                                     </ul>
                                     </li> *@
-                                   @*  <li><a asp-controller="Home" asp-action="Contact">Contact / Register For A Call</a></li> *@
+                                    @*  <li><a asp-controller="Home" asp-action="Contact">Contact / Register For A Call</a></li> *@
                                     <li style="list-style: none; display: inline-block; margin: 0 10px;">
                                         <a asp-controller="Home" asp-action="Contact"
                                            style="display: inline-block; padding: 10px 20px; background-color: rgb(7, 166, 152);
@@ -182,12 +181,12 @@
                         <!-- /.header-menu-wrap -->
                         <div class="header-right">
                             @* <div class="header-right-icon d-xl-block d-lg-none">
-                                <a href="wishlist.html"><i class="fa-sharp fa-regular fa-heart"></i></a>
-                                <span class="number">0</span>
+                            <a href="wishlist.html"><i class="fa-sharp fa-regular fa-heart"></i></a>
+                            <span class="number">0</span>
                             </div>
                             <div class="header-right-icon shop-btn">
-                                <a href="cart.html"><i class="fa-regular fa-cart-shopping"></i></a>
-                                <span class="number">0</span>
+                            <a href="cart.html"><i class="fa-regular fa-cart-shopping"></i></a>
+                            <span class="number">0</span>
                             </div>
                             <a href="contact.html" class="ed-primary-btn header-btn">Get a quote <i class="fa-sharp fa-regular fa-arrow-right"></i></a> *@
                             <div class="header-logo d-none d-lg-none">
@@ -236,7 +235,8 @@
                 </li>
                 <li>
                     @* <i class="fab fa-whatsapp"></i> *@
-                    Whatsapp : <a href="https://wa.me/918122097882">+91 812 209 7882</a></li>
+                    Whatsapp : <a href="https://wa.me/918122097882">+91 812 209 7882</a>
+                </li>
                 <li>
                     @* <i class="fa-light fa-envelope"></i> *@
                     Email : <a href="mailto:princetonlearnersforum@gmail.com" class="mail">
@@ -249,9 +249,9 @@
     <!-- /.mobile-side-menu -->
     <div class="mobile-side-menu-overlay"></div>
 
-   @*  <div id="preloader">
-        <div class="spinner-logo"><img src="~/assets/img/favicon.png" alt="logo"></div>
-        <div class="spinner"></div>
+    @*  <div id="preloader">
+    <div class="spinner-logo"><img src="~/assets/img/favicon.png" alt="logo"></div>
+    <div class="spinner"></div>
     </div> *@
     <!-- ./ preloader -->
     @* <div class="container">
@@ -264,15 +264,15 @@
         <div class="footer-top-wrap">
             <div class="container">
                 @* <div class="footer-top text-center">
-                    <h2 class="title">Subscribe Our Newsletter For <br>Latest Updates</h2>
-                    <div class="footer-form-wrap">
-                        <form action="mail.php" class="footer-form">
-                            <div class="form-item">
-                                <input type="text" id="email-2" name="email" class="form-control" placeholder="Enter Your E-mail">
-                            </div>
-                            <button class="ed-primary-btn">sign up</button>
-                        </form>
-                    </div>
+                <h2 class="title">Subscribe Our Newsletter For <br>Latest Updates</h2>
+                <div class="footer-form-wrap">
+                <form action="mail.php" class="footer-form">
+                <div class="form-item">
+                <input type="text" id="email-2" name="email" class="form-control" placeholder="Enter Your E-mail">
+                </div>
+                <button class="ed-primary-btn">sign up</button>
+                </form>
+                </div>
                 </div> *@
                 <div class="row footer-wrap">
                     <div class="col-lg-3 col-md-6">
@@ -294,51 +294,51 @@
                         </div>
                     </div>
                     @* <div class="col-lg-3 col-md-6">
-                        <div class="footer-widget widget-2">
-                            <h3 class="widget-header">Company Info</h3>
-                            <ul class="footer-list">
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="service.html">Resource Center</a></li>
-                                <li><a href="team.html">Careers</a></li>
-                                <li><a href="contact.html">Instructor</a></li>
-                                <li><a href="contact.html">Become A Teacher</a></li>
-                            </ul>
-                        </div>
+                    <div class="footer-widget widget-2">
+                    <h3 class="widget-header">Company Info</h3>
+                    <ul class="footer-list">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="service.html">Resource Center</a></li>
+                    <li><a href="team.html">Careers</a></li>
+                    <li><a href="contact.html">Instructor</a></li>
+                    <li><a href="contact.html">Become A Teacher</a></li>
+                    </ul>
+                    </div>
                     </div> *@
                     @* <div class="col-lg-3 col-md-6">
-                        <div class="footer-widget widget-2">
-                            <h3 class="widget-header">Useful Links</h3>
-                            <ul class="footer-list">
-                                <li><a href="contact.html">All Courses</a></li>
-                                <li><a href="contact.html">Digital Marketing</a></li>
-                                <li><a href="contact.html">Design & Branding</a></li>
-                                <li><a href="contact.html">Storytelling & Voice Over</a></li>
-                                <li><a href="contact.html">News & Blogs</a></li>
-                            </ul>
-                        </div>
+                    <div class="footer-widget widget-2">
+                    <h3 class="widget-header">Useful Links</h3>
+                    <ul class="footer-list">
+                    <li><a href="contact.html">All Courses</a></li>
+                    <li><a href="contact.html">Digital Marketing</a></li>
+                    <li><a href="contact.html">Design & Branding</a></li>
+                    <li><a href="contact.html">Storytelling & Voice Over</a></li>
+                    <li><a href="contact.html">News & Blogs</a></li>
+                    </ul>
+                    </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
-                        <div class="footer-widget">
-                            <h3 class="widget-header">Recent Post</h3>
-                            <div class="sidebar-post mb-20">
-                                <img src="~/assets/img/images/footer-post-1.png" alt="post">
-                                <div class="post-content">
-                                    <h3 class="title"><a href="#">Where Dreams Find a Home</a></h3>
-                                    <ul class="post-meta">
-                                        <li><i class="fa-light fa-calendar"></i>20 April, 2024</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="sidebar-post">
-                                <img src="~/assets/img/images/footer-post-2.png" alt="post">
-                                <div class="post-content">
-                                    <h3 class="title"><a href="#">Where Dreams Find a Home</a></h3>
-                                    <ul class="post-meta">
-                                        <li><i class="fa-light fa-calendar"></i>20 April, 2024</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="footer-widget">
+                    <h3 class="widget-header">Recent Post</h3>
+                    <div class="sidebar-post mb-20">
+                    <img src="~/assets/img/images/footer-post-1.png" alt="post">
+                    <div class="post-content">
+                    <h3 class="title"><a href="#">Where Dreams Find a Home</a></h3>
+                    <ul class="post-meta">
+                    <li><i class="fa-light fa-calendar"></i>20 April, 2024</li>
+                    </ul>
+                    </div>
+                    </div>
+                    <div class="sidebar-post">
+                    <img src="~/assets/img/images/footer-post-2.png" alt="post">
+                    <div class="post-content">
+                    <h3 class="title"><a href="#">Where Dreams Find a Home</a></h3>
+                    <ul class="post-meta">
+                    <li><i class="fa-light fa-calendar"></i>20 April, 2024</li>
+                    </ul>
+                    </div>
+                    </div>
+                    </div>
                     </div> *@
                 </div>
             </div>
