@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EducationForum.Repository",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EducationForum.DataAccess", "EducationForum.DataAccess\EducationForum.DataAccess.csproj", "{2A9EFE7D-E81C-48AC-A124-A5A95699B472}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EducationForum.Common", "EducationForum.Common\EducationForum.Common.csproj", "{258151EF-2DCF-4697-9D7C-B6C84909B75A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{2A9EFE7D-E81C-48AC-A124-A5A95699B472}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A9EFE7D-E81C-48AC-A124-A5A95699B472}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A9EFE7D-E81C-48AC-A124-A5A95699B472}.Release|Any CPU.Build.0 = Release|Any CPU
+		{258151EF-2DCF-4697-9D7C-B6C84909B75A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{258151EF-2DCF-4697-9D7C-B6C84909B75A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{258151EF-2DCF-4697-9D7C-B6C84909B75A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{258151EF-2DCF-4697-9D7C-B6C84909B75A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

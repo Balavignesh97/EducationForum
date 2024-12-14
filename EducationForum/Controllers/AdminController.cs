@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using EducationForum.Filters;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EducationForum.Controllers
 {
+    [TypeFilter(typeof(AuthFilter))]
     public class AdminController : Controller
     {
         public IActionResult Index()
@@ -13,5 +15,6 @@ namespace EducationForum.Controllers
         {
             return View();
         }
+
     }
 }

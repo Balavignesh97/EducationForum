@@ -13,7 +13,7 @@ function Callservice(object1, object2) {
             success: function (data) {
                 console.log(data)
                 var payload = data;
-                if (payload && payload?.errorType=='toster') {
+                if (payload && payload?.errorType == 'toster') {
                     toastr.options = {
                         "closeButton": true,
                         "debug": true,
@@ -34,6 +34,7 @@ function Callservice(object1, object2) {
                     };
                     if (payload.status === "success") {
                         toastr.success(payload.returnMessage);
+                        window.location.href = payload.redirectTo;
                     } else if (payload.status === "error") {
                         toastr.error(payload.returnMessage);
                     } else if (payload.status === "info") {
