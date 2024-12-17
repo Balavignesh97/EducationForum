@@ -16,7 +16,16 @@
     <!-- vendor css -->
     <link href="~/assets/css/style.css" rel="stylesheet" />
 
-    
+    <script src="~/assets/js/vendor-all.min.js"></script>
+    <script src="~/assets/js/plugins/bootstrap.min.js"></script>
+    <script src="~/assets/js/pcoded.min.js"></script>
+
+    <!-- custom-chart js -->
+    <script src="~/assets/js/pages/dashboard-main.js"></script>
+
+
+    <link href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css" rel="stylesheet" />
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
 </head>
 <body>
 
@@ -252,30 +261,10 @@
 
 
     <footer>
-        <script src="~/assets/js/vendor-all.min.js"></script>
-        <script src="~/assets/js/plugins/bootstrap.min.js"></script>
-        <script src="~/assets/js/pcoded.min.js"></script>
-
-        <!-- custom-chart js -->
-        <script src="~/assets/js/pages/dashboard-main.js"></script>
-
-
-        <link href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css" rel="stylesheet" />
-        <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+       
 
     </footer>
-    <script>
-        $(document).ready(function () {
-            setTimeout(function () {
-                $('#myTable').dataTable({
-                    "scrolly": "450px",
-                    "scrollcollapse": true,
-                    "paging": true,
-                });
-            }, 1000);
-            
-        });
-    </script>
+    
   
 </body>
 </html>
