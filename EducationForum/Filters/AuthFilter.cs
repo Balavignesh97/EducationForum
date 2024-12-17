@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using EducationForum.Helpers;
 using EducationForum.Domain;
+using EducationForum.Common;
 
 namespace EducationForum.Filters
 {
@@ -9,17 +10,13 @@ namespace EducationForum.Filters
     {
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            string encryptedAdminData = context.HttpContext.Request.Cookies["xyzudjhyxzuodnxzyc"];
+            string encryptedAdminData = context.HttpContext.Request.Cookies[AppConfig.AdminCookieKey];
 
             if (string.IsNullOrEmpty(encryptedAdminData))
             {
                 // Redirect to AdminLogin if no cookie is found
                 context.Result = new RedirectToRouteResult(
-                new RouteValueDictionary(new
-                {
-                    action = "Logout",
-                    controller = "Authentication"
-                }));
+                    new RouteValueDictionary(new { action = "Logout", controller = "Authentication" }));
                 return;
             }
 
@@ -37,11 +34,7 @@ namespace EducationForum.Filters
                 if (adminID == 0)
                 {
                     context.Result = new RedirectToRouteResult(
-                    new RouteValueDictionary(new
-                    {
-                        action = "Logout",
-                        controller = "Authentication"
-                    }));
+                    new RouteValueDictionary(new { action = "Logout", controller = "Authentication" }));
                 }
                 else
                 {
@@ -55,11 +48,7 @@ namespace EducationForum.Filters
             {
                 // Handle decryption errors or invalid cookie data
                 context.Result = new RedirectToRouteResult(
-                new RouteValueDictionary(new
-                {
-                    action = "Logout",
-                    controller = "Authentication"
-                }));
+                new RouteValueDictionary(new { action = "Logout", controller = "Authentication" }));
             }
         }
     }

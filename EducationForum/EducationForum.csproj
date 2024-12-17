@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EducationForum.Common\EducationForum.Common.csproj" />
     <ProjectReference Include="..\EducationForum.DataAccess\EducationForum.DataAccess.csproj" />
     <ProjectReference Include="..\EducationForum.Domain\EducationForum.Domain.csproj" />
     <ProjectReference Include="..\EducationForum.Repository\EducationForum.Repository.csproj" />

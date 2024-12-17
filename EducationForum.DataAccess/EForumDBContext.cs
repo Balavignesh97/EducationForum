@@ -10,7 +10,7 @@ namespace EducationForum.DataAccess
 
         }
         [DbFunction("EncryptPassword", "EForum")]
-        public static Byte[] Encrypt(Guid userid, string password)
+        public static Byte[] Encrypt(string password)
         {
             throw new NotImplementedException();
         }

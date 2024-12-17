@@ -14,10 +14,17 @@ builder.Services.AddDbContextPool<EForumDBContext>(options =>
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IUserServices,UserServices>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ICoursesServices,CoursesServices>();
 builder.Services.AddScoped<ICoursesRepository,CoursesRepository>();
 builder.Services.AddScoped<IContactServices, ContactServices>();
 builder.Services.AddScoped<IContactRepository, ContactRepository>();
+builder.Services.AddScoped<IAuthServices, AuthServices>();
+builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+builder.Services.AddScoped<IDashboardServices, DashboardServices>();
+builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
+
+builder.Services.AddSession(options => options.IdleTimeout = TimeSpan.FromMinutes(60));
 
 var app = builder.Build();
 
@@ -31,13 +38,13 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseSession();
 app.UseRouting();
 
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Admin}/{action=Dashboard}/{id?}");
 
 app.Run();

@@ -29,5 +29,7 @@ namespace EducationForum.Domain
         public DateTime? CallBackDate { get; set; }
         public DateTime? DateAdded { get; set; }
         public virtual ICollection<StudentEnquiryGradeSubjectMap> studentEnquiryGradeSubjectMaps { get; set; }
+        public string? ClassType { get; set; }
+        public int TotalCount { get; set; }
     }
 }
