@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using EducationForum.Domain;
+using EducationForum.Domain.ViewModels;
 
 namespace EducationForum.DataAccess
 {
@@ -27,6 +28,7 @@ namespace EducationForum.DataAccess
         public DbSet<StudentEnquiryGradeSubjectMap> StudentEnquiryGradeSubjectMap { get; set; } = null!;
         public DbSet<GradeSubjectMap> GradeSubjectMaps { get; set; } = null!;
         public DbSet<MasterInstructiveLanguage> MasterInstructiveLanguages { get; set; } = null!;
+        public DbSet<EnquiryQueue> EnquiryQueues { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -82,15 +84,29 @@ namespace EducationForum.DataAccess
                 entity.HasMany(e => e.studentEnquiryGradeSubjectMaps).WithOne(e => e.StudentEnquiry)
                 .HasForeignKey(e => e.EnquiryID)
                 .HasConstraintName("FK_StudentEnquiry_studentEnquiryGradeSubjectMaps");
+
+                entity.HasOne(e => e.ClassTypes).WithOne(e => e.StudentEnquiry)
+                .HasForeignKey<StudentEnquiry>(e => e.ClassTypeID)
+                .HasConstraintName("FK_StudentEnquiry_ClassTypeID").OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(e => e.InstructiveLanguage).WithOne(e => e.StudentEnquiry)
+                .HasForeignKey<StudentEnquiry>(e => e.InstructiveLanguageID)
+                .HasConstraintName("FK_StudentEnquiry_InstructiveLanguageID").OnDelete(DeleteBehavior.Restrict);
             });
             modelBuilder.Entity<StudentEnquiryGradeSubjectMap>(entity =>
             {
                 entity.ToTable("StudentEnquiryGradeSubjectMap", "EForum");
                 entity.Property(e => e.DateAdded).HasDefaultValueSql("(GETDATE())");
-                //entity.HasOne(e => e.StudentEnquiry)
-                //.WithMany(e => e.studentEnquiryGradeSubjectMaps)
-                //.HasForeignKey(e => e.EnquiryID)
-                //.HasConstraintName("FK_studentEnquiryGradeSubjectMaps_StudentEnquiry");
+
+                entity.HasOne(e => e.Grade)
+                .WithMany(e => e.StudentEnquiryGradeSubjectMaps)
+                .HasForeignKey(e => e.GradeID)
+                .HasConstraintName("FK_StudentEnquiryGradeSubjectMaps_GradeID").OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(e => e.Subject)
+               .WithMany(e => e.StudentEnquiryGradeSubjectMaps)
+               .HasForeignKey(e => e.SubjectID)
+               .HasConstraintName("FK_StudentEnquiryGradeSubjectMaps_SubjectID").OnDelete(DeleteBehavior.Restrict);
             });
             modelBuilder.Entity<GradeSubjectMap>(entity =>
             {

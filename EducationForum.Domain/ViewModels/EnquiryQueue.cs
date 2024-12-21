@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EducationForum.Domain
+namespace EducationForum.Domain.ViewModels
 {
-
-    public class StudentEnquiry
+    public class EnquiryQueue
     {
         [Key]
         public int EnquiryID { get; set; }
@@ -28,8 +26,7 @@ namespace EducationForum.Domain
         public DateTime? RespondedOn { get; set; }
         public DateTime? CallBackDate { get; set; }
         public DateTime? DateAdded { get; set; }
-        public virtual ClassTypes? ClassTypes { get; set; }
-        public MasterInstructiveLanguage? InstructiveLanguage { get; set; }
-        public virtual ICollection<StudentEnquiryGradeSubjectMap>? studentEnquiryGradeSubjectMaps { get; set; }
+        public string? ClassType { get; set; }
+        public int TotalCount { get; set; }
     }
 }

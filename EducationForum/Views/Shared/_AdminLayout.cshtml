@@ -10,6 +10,7 @@
     <meta name="description" content="" />
     <meta name="keywords" content="">
     <meta name="author" content="Phoenixcoded" />
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Favicon icon -->
     <link rel="icon" href="~/assets/images/favicon.ico" type="image/x-icon">
 
@@ -22,10 +23,14 @@
 
     <!-- custom-chart js -->
     <script src="~/assets/js/pages/dashboard-main.js"></script>
-
+    <script src="~/assets/services/callservicemethod.js"></script>
 
     <link href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css" rel="stylesheet" />
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 <body>
 
@@ -62,7 +67,7 @@
                         <label>Navigation</label>
                     </li>
                     <li class="nav-item">
-                        <a asp-controller="Admin" asp-action="Dashboard" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+                        <a asp-controller="Admin" asp-action="EnquiryQueue" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Enquiry Queue</span></a>
                     </li>
                 </ul>
 
