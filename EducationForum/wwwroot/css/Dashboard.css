@@ -1,0 +1,130 @@
+﻿/* Skeleton loader styles */
+.skeleton-loader {
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.skeleton-loader::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -100%;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, #f0f0f0, #e0e0e0, #f0f0f0);
+    animation: shimmer 1.5s infinite;
+}
+.LoaderTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.LoaderTable th,
+.LoaderTable td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.LoaderTable th {
+    background-color: #f8f8f8;
+}
+
+.skeleton-cell {
+    height: 20px;
+}
+
+.skeleton-header {
+    height: 25px;
+    margin-bottom: 8px;
+}
+/*capsule style*/
+.isRespondedtrue {
+    display: inline-block;
+    padding: 5px 10px; 
+    background-color: green;
+    color: white;
+    border-radius: 20px; 
+    font-size: 14px; 
+    text-align: center;
+}
+.isRespondedfalse {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border-radius: 20px; 
+    font-size: 14px; 
+    text-align: center;
+}
+
+.isOnHoldtrue {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: green;
+    color: white;
+    border-radius: 20px;
+    font-size: 14px;
+    text-align: center;
+}
+.isOnHoldfalse {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border-radius: 20px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.isRequestCallBacktrue {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: green;
+    color: white;
+    border-radius: 20px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.isRequestCallBackfalse {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border-radius: 20px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.isCallAttemptFailedtrue {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: green;
+    color: white;
+    border-radius: 20px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.isCallAttemptFailedfalse {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border-radius: 20px;
+    font-size: 14px;
+    text-align: center;
+}
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}

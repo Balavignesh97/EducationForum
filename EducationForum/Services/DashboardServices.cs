@@ -12,11 +12,22 @@ namespace EducationForum.Services
         {
             _dashboardepository = dashboardepository;
         }
-        public Task<List<StudentEnquiry>> GetDashboardData(DashboardParam param)
+        public Task<List<EnquiryQueue>> GetEnquiryQueueData(DashboardParam param)
         {
             try
             {
-                return _dashboardepository.GetDashboardData(param);
+                return _dashboardepository.GetEnquiryQueueData(param);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public Task<StudentEnquiry> GetEnquiryByID(int EnquiryID)
+        {
+            try
+            {
+                return _dashboardepository.GetEnquiryByID(EnquiryID);
             }
             catch (Exception ex)
             {

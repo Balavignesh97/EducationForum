@@ -5,6 +5,7 @@ namespace EducationForum.Services.Interface
 {
     public interface IDashboardServices
     {
-        Task<List<StudentEnquiry>> GetDashboardData(DashboardParam param);
+        Task<List<EnquiryQueue>> GetEnquiryQueueData(DashboardParam param);
+        Task<StudentEnquiry> GetEnquiryByID(int EnquiryID);
     }
 }

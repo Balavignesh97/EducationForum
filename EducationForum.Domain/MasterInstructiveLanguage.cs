@@ -12,5 +12,6 @@ namespace EducationForum.Domain
         public string Language { get; set; }
         public bool IsActive { get; set; }
         public DateTime DateAdded { get; set; } 
+        public virtual StudentEnquiry? StudentEnquiry { get; set; }
     }
 }

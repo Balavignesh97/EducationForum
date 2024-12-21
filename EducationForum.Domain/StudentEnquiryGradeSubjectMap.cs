@@ -17,6 +17,8 @@ namespace EducationForum.Domain
         public short GradeID { get; set; }
         public short SubjectID { get; set; }
         public DateTime? DateAdded { get; set; }
-        public virtual StudentEnquiry StudentEnquiry { get; set; }
+        public virtual StudentEnquiry? StudentEnquiry { get; set; }
+        public virtual Grades? Grade { get; set; }
+        public virtual Subjects? Subject { get; set; }
     }
 }
