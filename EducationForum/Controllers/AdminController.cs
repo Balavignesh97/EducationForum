@@ -90,14 +90,41 @@ namespace EducationForum.Controllers
             }
         }
         [HttpPost]
-        public async Task<bool> SubmitEnquiryResponse(string Name, string Email,string Phone,bool IsResponded,
-            bool IsOnHold,bool IsRequestCallBack,bool IsCallAttemptFailed,string ResponderNote)
+        public async Task<IActionResult> SubmitEnquiryResponse(string Name, string Email, string Phone, bool IsResponded,
+            bool IsOnHold, bool IsRequestCallBack, bool IsCallAttemptFailed, string ResponderNote)
         {
+            EnquiryQueue queue = new EnquiryQueue();
+            DataCreationReturnMessage message = new DataCreationReturnMessage();
             try
             {
-                return true;
+                queue.Name = Name;
+                queue.Email = Email;
+                queue.Phone = Phone;
+                queue.IsResponded = IsResponded;
+                queue.RespondedOn = IsResponded?DateTime.Now:null;
+                queue.IsOnHold = IsOnHold;
+                queue.IsRequestCallBack = IsRequestCallBack;
+                queue.IsCallAttemptFailed = IsCallAttemptFailed;
+                queue.ResponderNote = ResponderNote;
+                var result = await _dashboardServices.UpdateEnquiryQueue(queue);
+                if (result != null && result.EnquiryID>0)
+                {
+                    message.ErrorType = "toster";
+                    message.Status = "success";
+                    message.RedirectTo = "";
+                    message.ReturnMessage = "Query responded sucessfully";
+                    message.SpinnerID = "#EnquiryResponeSubmitSpinner";
+                    message.ButtonID = "#EnquiryResponeSubmit";
+                    return Json(message);
+                }
+                message.ErrorType = "toster";
+                message.Status = "error";
+                message.ReturnMessage = "Issue with the query";
+                message.SpinnerID = "#EnquiryResponeSubmitSpinner";
+                message.ButtonID = "#EnquiryResponeSubmit";
+                return Json(message);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw;
             }

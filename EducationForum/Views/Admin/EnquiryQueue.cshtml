@@ -747,11 +747,15 @@
 
                         $('#IsResponded').prop('checked', result.isResponded);
                         $('#IsRespondeDate').html(' (' + moment(result.respondedOn).format('DD/MM/YYYY HH:mm') + ')');
+                        if (result.isResponded){
+                            $('#IsResponded').prop('disabled', true);
+                        }
                         $('#IsOnHold').prop('checked', result.isOnHold);
                         // $('#IsOnHoldDate').html(result.);
                         $('#IsRequestCallBack').prop('checked', result.isRequestCallBack);
                         $('#IsRequestCallBackDate').html(' (' + moment(result.callBackDate).format('DD/MM/YYYY HH:mm') + ')');
                         $('#IsCallAttemptFailed').prop('checked', result.isCallAttemptFailed);
+                        $('#responderNote').val(result.responderNote);
                         // $('#IsCallAttemptFailedDate').html(result.);
                         resolve(result);
                     } else {

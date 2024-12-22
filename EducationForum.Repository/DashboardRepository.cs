@@ -6,6 +6,7 @@ using EducationForum.Repository.Interface;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,10 +15,10 @@ using System.Threading.Tasks;
 
 namespace EducationForum.Repository
 {
-    public class DashboardRepository : IDashboardRepository
+    public class DashboardRepository : RepositoryBase<object>, IDashboardRepository
     {
         protected EForumDBContext _dbContext;
-        public DashboardRepository(EForumDBContext dbContext)
+        public DashboardRepository(EForumDBContext dbContext) : base(dbContext)
         {
             _dbContext = dbContext;
         }
@@ -111,6 +112,30 @@ namespace EducationForum.Repository
                     }
 
                     return Enquiry;
+                }
+                return new StudentEnquiry();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public async Task<StudentEnquiry> UpdateEnquiryQueue(EnquiryQueue enquiry)
+        {
+            try
+            {
+                StudentEnquiry? enquiryqueue = await _dbContext.StudentEnquiry.Where(e => e.Name == enquiry.Name && e.Email == enquiry.Email && e.Phone == enquiry.Phone).FirstOrDefaultAsync();
+                if (enquiryqueue != null)
+                {
+                    enquiryqueue.IsResponded = enquiry.IsResponded;
+                    enquiryqueue.RespondedOn = enquiryqueue.IsResponded ? enquiry.RespondedOn : null;
+                    enquiryqueue.IsOnHold = enquiry.IsOnHold;
+                    enquiryqueue.IsRequestCallBack = enquiry.IsRequestCallBack;
+                    enquiryqueue.IsCallAttemptFailed = enquiry.IsCallAttemptFailed;
+                    enquiryqueue.ResponderNote = enquiry.ResponderNote;
+
+                    UpdateEntity<StudentEnquiry>(enquiryqueue);
+                    return enquiryqueue;
                 }
                 return new StudentEnquiry();
             }

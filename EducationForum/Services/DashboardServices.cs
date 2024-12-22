@@ -12,22 +12,33 @@ namespace EducationForum.Services
         {
             _dashboardepository = dashboardepository;
         }
-        public Task<List<EnquiryQueue>> GetEnquiryQueueData(DashboardParam param)
+        public async Task<List<EnquiryQueue>> GetEnquiryQueueData(DashboardParam param)
         {
             try
             {
-                return _dashboardepository.GetEnquiryQueueData(param);
+                return await _dashboardepository.GetEnquiryQueueData(param);
             }
             catch (Exception ex)
             {
                 throw;
             }
         }
-        public Task<StudentEnquiry> GetEnquiryByID(int EnquiryID)
+        public async Task<StudentEnquiry> GetEnquiryByID(int EnquiryID)
         {
             try
             {
-                return _dashboardepository.GetEnquiryByID(EnquiryID);
+                return await _dashboardepository.GetEnquiryByID(EnquiryID);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public async Task<StudentEnquiry> UpdateEnquiryQueue(EnquiryQueue enquiry)
+        {
+            try
+            {
+                return await _dashboardepository.UpdateEnquiryQueue(enquiry);
             }
             catch (Exception ex)
             {
