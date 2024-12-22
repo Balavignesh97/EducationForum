@@ -31,7 +31,7 @@ namespace EducationForum.Controllers
             userdata = await _UserServices.GetUserByID(Userinfo.UserID);
             if (userdata != null && !string.IsNullOrEmpty(userdata.UserCode))
             {
-                return RedirectToAction("Dashboard", "Admin");
+                return RedirectToAction("EnquiryQueue", "Admin");
             }
             return View();
         }

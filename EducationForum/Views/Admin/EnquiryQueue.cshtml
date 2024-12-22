@@ -8,8 +8,8 @@
 
 <style>
     /* .modal-dialog {
-            max-width: 80%;
-        } */
+                    max-width: 80%;
+                } */
 </style>
 <div class="row">
     <div class="col-lg-12">
@@ -268,7 +268,7 @@
                                     <div class="col-sm-7">
                                         <div class="form-check form-switch">
                                             <input class="form-check-input" type="checkbox" id="IsResponded" name="darkmode" value="">
-                                            <label class="form-check-label" for="mySwitch">Responded <span id="IsRespondeDate"></span></label>
+                                            <label class="form-check-label" for="mySwitch">Responded <span id="RespondeDate"></span></label>
                                         </div>
                                     </div>
                                     <div class="col-sm-5">
@@ -286,7 +286,7 @@
                                         <div class="form-check form-switch">
                                             <input class="form-check-input" type="checkbox" value="" id="IsRequestCallBack">
                                             <label class="form-check-label" for="IsRequestCallBack">
-                                                Request call back <span id="IsRequestCallBackDate"></span>
+                                                Request call back @* <span id="RequestCallBackDate"></span> *@
                                             </label>
                                         </div>
                                     </div>
@@ -300,9 +300,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row texthide" id="divIsRequestCallBackdate">
+                                <div class="row texthide" id="divRequestCallBackdate">
                                     <div class="col">
-                                        <input type="datetime-local" class="form-controls" id="IsRequestCallBackdate" />
+                                        <input type="datetime-local" class="form-controls" id="RequestCallBackDate" />
                                     </div>
 
                                 </div>
@@ -330,11 +330,11 @@
     // $('#myTable').hide();
     $('#IsRequestCallBack').on('change', function () {
         if (this.checked) {
-            $('#divIsRequestCallBackdate').removeClass('texthide').addClass('textshow');
+            $('#divRequestCallBackdate').removeClass('texthide').addClass('textshow');
         }
         else {
-            $('#divIsRequestCallBackdate').addClass('texthide').removeClass('textshow');
-            $('#IsRequestCallBackdate').val('');
+            $('#divRequestCallBackdate').addClass('texthide').removeClass('textshow');
+            $('#RequestCallBackDate').val('');
         }
     });
 
@@ -713,6 +713,19 @@
 
     function Closepopup() {
         $('#enquiryFormModal').modal('hide');
+        $('#name').val('');
+        $('#email').val('');
+        $('#phone').val('');
+        $('#classType').val('');
+        $('#instructiveLanguage').val('');
+        $('#IsResponded').prop('checked', false);
+        $('#RespondeDate').html('');
+        $('#IsResponded').prop('disabled', false);
+        $('#IsOnHold').prop('checked', false);
+        $('#IsRequestCallBack').prop('checked', false);
+        $('#RequestCallBackDate').val('');
+        $('#IsCallAttemptFailed').prop('checked', false);
+        $('#responderNote').val('');
     }
     function DataTableBindData(pageno = 0, name = '', email = '', phone = '', sortcolumn = '', sortorder = '', searchstartdate = '', searchEnddate = '') {
         $('#LoaderTable').show();
@@ -785,8 +798,8 @@
 
 
                         $('#IsResponded').prop('checked', result.isResponded);
-                        $('#IsRespondeDate').html(' (' + moment(result.respondedOn).format('DD/MM/YYYY HH:mm') + ')');
-                        if (result.isResponded){
+                        $('#RespondeDate').html(' (' + moment(result.respondedOn).format('DD/MM/YYYY HH:mm') + ')');
+                        if (result.isResponded) {
                             $('#IsResponded').prop('disabled', true);
                         }
                         $('#IsOnHold').prop('checked', result.isOnHold);
@@ -795,7 +808,7 @@
                         if ($('#IsRequestCallBack')[0].checked) {
                             $('#IsRequestCallBack').trigger('change');
                         }
-                        $('#IsRequestCallBackDate').html(' (' + moment(result.callBackDate).format('DD/MM/YYYY HH:mm') + ')');
+                        $('#RequestCallBackDate').val(result.callBackDate);
                         $('#IsCallAttemptFailed').prop('checked', result.isCallAttemptFailed);
                         $('#responderNote').val(result.responderNote);
                         // $('#IsCallAttemptFailedDate').html(result.);
@@ -822,10 +835,9 @@
     $('#EnquiryResponeSubmit').click(function () {
         $('#EnquiryResponeSubmitSpinner').show();
         $("#EnquiryResponeSubmit").prop("disabled", true);
-        var check = $('#IsRequestCallBack').prop('checked');
         var datastring = {
             Name: $('#name').val(), Email: $('#email').val(), Phone: $('#phone').val(), IsResponded: $('#IsResponded').prop('checked'), IsOnHold: $('#IsOnHold').prop('checked'),
-            IsRequestCallBack: $('#IsRequestCallBack').prop('checked'), IsCallAttemptFailed: $('#IsCallAttemptFailed').prop('checked'), ResponderNote: $('#responderNote').val()
+            IsRequestCallBack: $('#IsRequestCallBack').prop('checked'), RequestCallBackDate: $('#RequestCallBackDate').val(), IsCallAttemptFailed: $('#IsCallAttemptFailed').prop('checked'), ResponderNote: $('#responderNote').val()
         };
         var object2 = '/Admin/SubmitEnquiryResponse';
 

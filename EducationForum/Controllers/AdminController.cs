@@ -9,7 +9,7 @@ using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pag
 
 namespace EducationForum.Controllers
 {
-    //[TypeFilter(typeof(AuthFilter))]
+    [TypeFilter(typeof(AuthFilter))]
     public class AdminController : Controller
     {
         public IDashboardServices _dashboardServices;
@@ -91,7 +91,7 @@ namespace EducationForum.Controllers
         }
         [HttpPost]
         public async Task<IActionResult> SubmitEnquiryResponse(string Name, string Email, string Phone, bool IsResponded,
-            bool IsOnHold, bool IsRequestCallBack, bool IsCallAttemptFailed, string ResponderNote)
+            bool IsOnHold, bool IsRequestCallBack, bool IsCallAttemptFailed, string ResponderNote, string RequestCallBackDate = "")
         {
             EnquiryQueue queue = new EnquiryQueue();
             DataCreationReturnMessage message = new DataCreationReturnMessage();
@@ -104,6 +104,7 @@ namespace EducationForum.Controllers
                 queue.RespondedOn = IsResponded?DateTime.Now:null;
                 queue.IsOnHold = IsOnHold;
                 queue.IsRequestCallBack = IsRequestCallBack;
+                queue.CallBackDate = IsRequestCallBack ? Convert.ToDateTime(RequestCallBackDate) : null;
                 queue.IsCallAttemptFailed = IsCallAttemptFailed;
                 queue.ResponderNote = ResponderNote;
                 var result = await _dashboardServices.UpdateEnquiryQueue(queue);

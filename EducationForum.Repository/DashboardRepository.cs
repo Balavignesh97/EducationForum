@@ -131,6 +131,7 @@ namespace EducationForum.Repository
                     enquiryqueue.RespondedOn = enquiryqueue.IsResponded ? enquiry.RespondedOn : null;
                     enquiryqueue.IsOnHold = enquiry.IsOnHold;
                     enquiryqueue.IsRequestCallBack = enquiry.IsRequestCallBack;
+                    enquiryqueue.CallBackDate = enquiryqueue.IsRequestCallBack ? enquiry.CallBackDate : null;
                     enquiryqueue.IsCallAttemptFailed = enquiry.IsCallAttemptFailed;
                     enquiryqueue.ResponderNote = enquiry.ResponderNote;
 
