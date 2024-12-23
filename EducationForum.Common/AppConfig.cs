@@ -6,6 +6,6 @@
     }
     public static class SP
     {
-        public static string GetDashboardData { get; } = "[SP].[GetDashboardData]";
+        public static string GetStudentEnquiryQueue { get; } = "[SP].[GetStudentEnquiryQueue]";
     }
 }

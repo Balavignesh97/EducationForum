@@ -68,7 +68,7 @@ namespace EducationForum.Controllers
                     Response.Cookies.Append(AppConfig.AdminCookieKey, encryptedData, options);
 
                     return Json(new DataCreationReturnMessage()
-                    {ErrorType = "toster",Status = "success", RedirectTo = "/Admin/Dashboard", ReturnMessage = "Login Authenticated!",SpinnerID = "#LoginSpinner",ButtonID = "#Loginbtn",});
+                    {ErrorType = "toster",Status = "success", RedirectTo = "/Admin/EnquiryQueue", ReturnMessage = "Login Authenticated!",SpinnerID = "#LoginSpinner",ButtonID = "#Loginbtn",});
                 }
                 return Json(new DataCreationReturnMessage()
                 { ErrorType = "toster",Status = "error",ReturnMessage = "Login failed!",SpinnerID = "#LoginSpinner",ButtonID = "#Loginbtn",});

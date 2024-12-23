@@ -45,7 +45,7 @@ namespace EducationForum.Repository
                 //var check = _dbContext.StudentEnquiry.FromSqlRaw($"EXEC {SP.GetDashboardData} @Name, @Email, @Phone, @ClassTypeID, @IsResponded, @IsOnHold, @IsRequestCallBack, @IsCallAttemptFailed, @Skip, @Take, @Orderby, @SortOrder, @StartDate, @EndDate"
                 //    , param1, param2, param3, param4, param5, param6, param7, param8, param9, param10, param11, param12, param13, param14);
 
-                student = await _dbContext.EnquiryQueues.FromSqlRaw($"EXEC {SP.GetDashboardData} @Name, @Email, @Phone, @ClassTypeID, @IsResponded, @IsOnHold, @IsRequestCallBack, @IsCallAttemptFailed, @Skip, @Take, @Orderby, @SortOrder, @StartDate, @EndDate"
+                student = await _dbContext.EnquiryQueues.FromSqlRaw($"EXEC {SP.GetStudentEnquiryQueue} @Name, @Email, @Phone, @ClassTypeID, @IsResponded, @IsOnHold, @IsRequestCallBack, @IsCallAttemptFailed, @Skip, @Take, @Orderby, @SortOrder, @StartDate, @EndDate"
                     , param1, param2, param3, param4, param5, param6, param7, param8, param9, param10, param11, param12, param13, param14).ToListAsync();
 
                 return student;
