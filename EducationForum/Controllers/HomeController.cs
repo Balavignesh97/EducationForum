@@ -49,7 +49,10 @@ namespace EducationForum.Controllers
             studentEnquiry.Name = obj.fullname;
             studentEnquiry.Email = obj.email;
             studentEnquiry.Phone = obj.Mobile;
+            studentEnquiry.State = obj.state;
+            studentEnquiry.City = obj.city;
             studentEnquiry.ClassTypeID = Convert.ToInt16(obj.choiceofclass);
+            studentEnquiry.BoardID = Convert.ToInt16(obj.boardID);
             studentEnquiry.EnquirerNote = obj.message;
             studentEnquiry.InstructiveLanguageID = Convert.ToInt16(obj.instructiveLanguage);
             studentEnquiry.studentEnquiryGradeSubjectMaps = new List<StudentEnquiryGradeSubjectMap>{

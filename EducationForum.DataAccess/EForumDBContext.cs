@@ -29,6 +29,7 @@ namespace EducationForum.DataAccess
         public DbSet<GradeSubjectMap> GradeSubjectMaps { get; set; } = null!;
         public DbSet<MasterInstructiveLanguage> MasterInstructiveLanguages { get; set; } = null!;
         public DbSet<EnquiryQueue> EnquiryQueues { get; set; } = null!;
+        public DbSet<MasterBoards> Boards { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -46,6 +47,11 @@ namespace EducationForum.DataAccess
             {
                 entity.HasKey(e => e.UserTypeID);
                 entity.ToTable("UserType", "EForumMaster");
+            });
+            modelBuilder.Entity<MasterBoards>(entity =>
+            {
+                entity.HasKey(e => e.BoardID);
+                entity.ToTable("Boards", "EForumMaster");
             });
             modelBuilder.Entity<User>(entity =>
             {
@@ -92,6 +98,10 @@ namespace EducationForum.DataAccess
                 entity.HasOne(e => e.InstructiveLanguage).WithOne(e => e.StudentEnquiry)
                 .HasForeignKey<StudentEnquiry>(e => e.InstructiveLanguageID)
                 .HasConstraintName("FK_StudentEnquiry_InstructiveLanguageID").OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(e => e.Boards).WithOne(e => e.Enquiry)
+                .HasForeignKey<StudentEnquiry>(e => e.BoardID)
+                .HasConstraintName("FK_StudentEnquiry_BoardID").OnDelete(DeleteBehavior.Restrict);
             });
             modelBuilder.Entity<StudentEnquiryGradeSubjectMap>(entity =>
             {

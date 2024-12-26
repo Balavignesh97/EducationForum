@@ -17,7 +17,10 @@ namespace EducationForum.Domain
         public string? Name { get; set; }
         public string? Email { get; set; }
         public string? Phone { get; set; }
+        public string? State { get; set; }
+        public string? City { get; set; }
         public short? ClassTypeID { get; set; }
+        public short? BoardID { get; set; }
         public short? InstructiveLanguageID { get; set; }
         public string? EnquirerNote { get; set; }
         public string? ResponderNote { get; set; }
@@ -29,6 +32,7 @@ namespace EducationForum.Domain
         public DateTime? CallBackDate { get; set; }
         public DateTime? DateAdded { get; set; }
         public virtual ClassTypes? ClassTypes { get; set; }
+        public virtual MasterBoards? Boards { get; set; }
         public MasterInstructiveLanguage? InstructiveLanguage { get; set; }
         public virtual ICollection<StudentEnquiryGradeSubjectMap>? studentEnquiryGradeSubjectMaps { get; set; }
     }
