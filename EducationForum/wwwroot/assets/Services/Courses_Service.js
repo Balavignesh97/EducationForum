@@ -34,15 +34,21 @@ function BindCourseDetails() {
                     }
                 }
                 if (prop['isTopicsAvilable'] && prop['topicsDesc'] !== undefined && prop['topicsDesc'] !== '' && prop['topicsDesc'] !== null) {
-                    Topics = '<li><i class="fa-light fa-list-alt"></i><span><strong>Topics : </strong><span>' + prop['topicsDesc'] + '</span></span></li>';
+                    if (prop['isTopicATemplate']) {
+                        Topics = '<li><i class="fa-light fa-list-alt"></i><span><strong>Topics : </strong>' + prop['topicsDesc'] + '</span></li>';
+                    }
+                    else {
+                        Topics = '<li><i class="fa-light fa-list-alt"></i><span><strong>Topics : </strong><span>' + prop['topicsDesc'] + '</span></span></li>';
+                    }
+                    
                 }
-                if (prop['gradeFrom'] !== '' && prop['gradeFrom'] !== undefined && prop['gradeTo'] !== '' && prop['gradeTo'] !== undefined) {
+                if (prop['gradeFrom'] !== null && prop['gradeFrom'] !== '' && prop['gradeFrom'] !== undefined && prop['gradeTo'] !== null && prop['gradeTo'] !== '' && prop['gradeTo'] !== undefined) {
                     Grade = '<li><i class="fa-light fa-file"></i><span><strong>Grade : </strong><span>' + prop['gradeFrom'] + 'th - ' + prop['gradeTo'] + 'th</span></span></li>';
-                } else if (prop['gradeFrom'] !== '' && prop['gradeFrom'] !== undefined) {
+                } else if (prop['gradeFrom'] !== null && prop['gradeFrom'] !== '' && prop['gradeFrom'] !== undefined) {
                     Grade = '<li><i class="fa-light fa-file"></i><span><strong>Grade : </strong><span>' + prop['gradeFrom'] + 'th</span></span></li>';
                 }
                 if (prop['otherDesc'] && prop['otherDesc'] !== undefined && prop['otherDesc'] !== '' && prop['otherDesc'] !== null) {
-                    OtherDescription = '<li style="font-size: small;">' + prop['topicsDesc'] + '</li>';
+                    OtherDescription = '<li style="font-size: small;">' + prop['otherDesc'] + '</li>';
                 }
                 var Wrap =
                     `<div class="col-xl-4 col-lg-6 col-md-6">

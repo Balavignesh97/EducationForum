@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<link href="~/css/dashboard.css?v=16" rel="stylesheet" />
+<link href="~/css/dashboard.css?v=@DateTime.Now.Ticks" rel="stylesheet" />
 
 <style>
     /* .modal-dialog {
@@ -323,4 +323,4 @@
         </div>
     </div>
 </div>
-<script src="~/assets/services/enquiryqueue_service.js"></script>
+<script src="~/assets/services/enquiryqueue_service.js?v=@DateTime.Now.Ticks"></script>

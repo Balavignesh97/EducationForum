@@ -91,9 +91,9 @@
                                 <div class="col-md-6">
                                     <input type="hidden" name="Class" id="Class" />
                                     <div class="form-item">
-                                        <div class="nice-select select-control form-control country Class" tabindex="0" name="Classdiv" required>
-                                            <span class="current">Select Class</span>
-                                            <ul class="list" id="ClassDD">
+                                        <div class="nice-select select-control form-control country subject" tabindex="0">
+                                            <span class="current" name="current">Select Subject</span>
+                                            <ul class="list" id="SubjectDD">
                                                 <li data-value="" class="option selected focus">Loading...</li>
                                             </ul>
                                         </div>
@@ -106,9 +106,9 @@
                                 <input type="hidden" name="instructiveLanguage" id="instructiveLanguage" />
                                 <div class="col-md-6">
                                     <div class="form-item">
-                                        <div class="nice-select select-control form-control country subject" tabindex="0">
-                                            <span class="current" name="current">Select Subject</span>
-                                            <ul class="list" id="SubjectDD">
+                                        <div class="nice-select select-control form-control country Class" tabindex="0" name="Classdiv" required>
+                                            <span class="current">Select Class</span>
+                                            <ul class="list" id="ClassDD">
                                                 <li data-value="" class="option selected focus">Loading...</li>
                                             </ul>
                                         </div>
@@ -206,4 +206,4 @@
     </div>
 </section>
 <!-- ./ contact-section -->
-<script src="~/assets/services/contact_service.js"></script>
+<script src="~/assets/services/contact_service.js?v=@DateTime.Now.Ticks"></script>

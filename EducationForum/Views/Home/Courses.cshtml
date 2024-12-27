@@ -2,7 +2,7 @@
     ViewData["Title"] = "Courses";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link href="~/css/coursescss.css" rel="stylesheet" />
+<link href="~/css/coursescss.css?v=@DateTime.Now.Ticks" rel="stylesheet" />
 <section class="page-header">
     <div class="bg-item">
         <div class="bg-img" data-background="../assets/img/bg-img/1300x308bg-img.jpg"></div>
@@ -88,4 +88,4 @@
 </section>
 <!-- ./ course-section -->
 
-<script src="~/assets/services/courses_service.js"></script>
+<script src="~/assets/services/courses_service.js?v=@DateTime.Now.Ticks"></script>

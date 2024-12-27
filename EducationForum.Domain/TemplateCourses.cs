@@ -14,14 +14,15 @@ namespace EducationForum.Domain
         public string? CourseHeading { get; set; }
         public string? ImagePath { get; set; }
         public short SubjectID { get; set; }
-        public short GradeFrom { get; set; }
-        public short GradeTo { get; set; }
+        public short? GradeFrom { get; set; }
+        public short? GradeTo { get; set; }
         public bool IsGroupClassAvailable { get; set; }
         public string? GroupClassDesc { get; set; }
         public short? MaxStudentForGroupClass { get; set; }
         public bool IsIndividualClassAvailable { get; set; }
         public string? IndividualClassDesc { get; set; }
         public bool IsTopicsAvilable { get; set; }
+        public bool IsTopicATemplate { get; set; }
         public string? TopicsDesc { get; set; }
         public short? InstructorID { get; set; }
         public bool IsActive { get; set; } = true;
