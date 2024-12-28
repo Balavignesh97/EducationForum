@@ -1,0 +1,100 @@
+﻿@{
+    ViewData["Title"] = "UserCreate";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<head>
+    <link href="~/css/User Form.css?v=@DateTime.Now.Ticks" rel="stylesheet" />
+</head>
+
+<body>
+    <section class="container">
+        <header>User Form</header>
+        <form action="#" class="form">
+            <div class="column">
+                <div class="input-box">
+                    <label>First Name</label>
+                    <i class="fa-solid fa-user-tie Icon1"></i>
+                    <input type="text" class="form-control" placeholder="Enter First Name" id="FirstName" name="FirstName" required />
+                </div>
+                <div class="input-box">
+                    <label>Last Name</label>
+                    <i class="fa-solid fa-user-tie Icon1"></i>
+                    <input type="text" class="form-control" placeholder="Enter Last Name" id="LastName" name="LastName" />
+                </div>
+                <div class="input-box">
+                    <label>Phone Number</label>
+                    <i class="fa-solid fa-mobile-screen-button Icon1"></i>
+                    <input type="text" class="form-control" placeholder="Enter phone number" id="Mobile" name="Phone" required maxlength="10" />
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="input-box">
+                    <label>Email Address</label>
+                    <i class="fa-regular fa-envelope Icon1"></i>
+                    <input type="text" class="form-control" placeholder="Enter email address" id="email" name="Email" required />
+                </div>
+                <div class="input-box">
+                    <label>Password</label>
+                    <i class="fa-solid fa-key Icon1"></i>
+                    <input type="password" class="form-control" placeholder="Enter your password" id="Password" name="Password" required />
+                    <p id="strength-error" style="color:red;"></p>
+                </div>
+                <div class="input-box">
+                    <label>Confirm Password</label>
+                    <i class="fa-solid fa-lock Icon1"></i>
+                    <input type="password" class="form-control" placeholder="Enter your confirm password" id="ConfirmPassword" name="ConfirmPassword" required />
+                    <p id="match-error" style="color:red;"></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="gender-box">
+                        <h3>Gender <i class="fa-solid fa-venus-mars"></i></h3>
+                        <div class="gender-option">
+                            <div class="gender">
+                                <input type="radio" id="check-male" name="Gender" checked value="1" />
+                                <label for="check-male">Male</label>
+                            </div>
+                            <div class="gender">
+                                <input type="radio" id="check-female" name="Gender" value="2" />
+                                <label for="check-female">Female</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <label>User Profile</label>
+                    <input type="file" id="Image" accept="image/*">
+                    <input type="hidden" name="ImageName" id="ImageName" />
+                    <input type="hidden" name="UserImage" id="UserImage" />
+                </div>
+                <div class="col-sm-4">
+                    <img id="Document-preview" class="img-thumbnail" style="display:none;width:25%;">
+                </div>
+            </div>
+
+            <div class="input-box address">
+                <label>Address</label>
+                <i class="fa-regular fa-address-card"></i>
+                <div class="column">
+                    <input type="text" class="form-control" placeholder="Enter your Address" id="Address1" name="Address1" />
+                    <input type="text" class="form-control" placeholder="Enter your Address 2" id="Address2" name="Address2" />
+                </div>
+                <div class="column">
+                    <input type="text" class="form-control" placeholder="Enter your State" id="State" name="State" />
+                    <input type="text" class="form-control" placeholder="Enter your City" id="City" name="City" />
+                </div>
+            </div>
+
+
+
+            <button id="usersubmit" type="button">
+                <span>Create</span>
+            </button>
+        </form>
+    </section>
+</body>
+<script src="~/assets/services/user_service.js?v=@DateTime.Now.Ticks"></script>

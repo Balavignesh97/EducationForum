@@ -131,5 +131,15 @@ namespace EducationForum.Controllers
             }
         }
 
+        public IActionResult UserCreate()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public void UserCreate(User obj)
+        {
+            
+        }
     }
 }
