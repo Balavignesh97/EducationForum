@@ -6,6 +6,7 @@ using EducationForum.Domain.ViewModels;
 using Newtonsoft.Json.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
+using EducationForum.Common;
 
 namespace EducationForum.Controllers
 {
@@ -28,6 +29,12 @@ namespace EducationForum.Controllers
         public IActionResult Dashboard()
         {
             return View();
+        }
+        public IActionResult AdminLogout()
+        {
+            Response.Cookies.Delete(AppConfig.AdminCookieKey);
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login", "Authentication");
         }
         [HttpPost]
         public async Task<ActionResult<List<EnquiryQueue>>> GetEnquiryQueueData(string name = "", string email = "", string phone = "",
