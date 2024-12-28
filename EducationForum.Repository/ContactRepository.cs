@@ -77,6 +77,18 @@ namespace EducationForum.Repository
                 throw;
             }
         }
+        public async Task<List<MasterBoards>> GetBoards()
+        {
+            try
+            {
+                var result = await _dbContext.Boards.Where(t => t.IsActive == true).ToListAsync();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         public async Task<List<Subjects>> GetSubjectsByGrade(short gradeID)
         {

@@ -11,6 +11,7 @@ namespace EducationForum.Services.Interface
         Task<List<MasterInstructiveLanguage>> GetInstructiveLanguage();
         void SubmitEnquiry(StudentEnquiry studentenquiry);
         Task<List<MasterTopics>> GetTopics();
+        Task<List<MasterBoards>> GetBoards();
         Task<string> GetBaseForSubject(short SubjectID);
     }
 }

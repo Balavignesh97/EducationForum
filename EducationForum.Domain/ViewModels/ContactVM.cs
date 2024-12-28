@@ -10,7 +10,7 @@ namespace EducationForum.Domain.ViewModels
         public string Class { get; set; }
         public string subject { get; set; }
         public string choiceofclass { get; set; }
-        public string boardID { get; set; }
+        public string board { get; set; }
         public string topic { get; set; }
         public string state { get; set; }
         public string city { get; set; }

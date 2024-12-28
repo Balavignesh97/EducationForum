@@ -68,6 +68,17 @@ namespace EducationForum.Services
                 throw;
             }
         }
+        public async Task<List<MasterBoards>> GetBoards()
+        {
+            try
+            {
+                return await _contactRepository.GetBoards();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         public void SubmitEnquiry(StudentEnquiry studentenquiry)
         {

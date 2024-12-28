@@ -52,7 +52,7 @@ namespace EducationForum.Controllers
             studentEnquiry.State = obj.state;
             studentEnquiry.City = obj.city;
             studentEnquiry.ClassTypeID = Convert.ToInt16(obj.choiceofclass);
-            studentEnquiry.BoardID = Convert.ToInt16(obj.boardID);
+            studentEnquiry.BoardID = Convert.ToInt16(obj.board);
             studentEnquiry.EnquirerNote = obj.message;
             studentEnquiry.InstructiveLanguageID = Convert.ToInt16(obj.instructiveLanguage);
             studentEnquiry.TopicsID = Convert.ToInt16(obj.topic);
@@ -151,7 +151,20 @@ namespace EducationForum.Controllers
             }
             catch
             {
-                return Json(new List<MasterInstructiveLanguage>());
+                return Json(new List<MasterTopics>());
+            }
+        }
+        [HttpGet]
+        public async Task<ActionResult<List<MasterBoards>>> GetBoards()
+        {
+            try
+            {
+                var topics = await _contactservices.GetBoards();
+                return Json(topics);
+            }
+            catch
+            {
+                return Json(new List<MasterBoards>());
             }
         }
         [HttpPost]
