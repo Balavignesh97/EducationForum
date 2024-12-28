@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EducationForum.Domain
 {
@@ -33,6 +34,11 @@ namespace EducationForum.Domain
         public DateTime? DateUpdated { get; set; }
         public int? LoginAttemptCount { get; set; }
         public bool? IsTwoFactorAuthentication { get; set; }
+
+        [NotMapped]
+        public string? ImageName { get; set; } = string.Empty;
+        [NotMapped]
+        public string? ConfirmPassword { get; set; } = string.Empty;
     }
 
 }
