@@ -30,6 +30,8 @@ namespace EducationForum.DataAccess
         public DbSet<MasterInstructiveLanguage> MasterInstructiveLanguages { get; set; } = null!;
         public DbSet<EnquiryQueue> EnquiryQueues { get; set; } = null!;
         public DbSet<MasterBoards> Boards { get; set; } = null!;
+        public DbSet<MasterTopics> Topics { get; set; } = null!;
+        public DbSet<MasterSubjectBase> MasterSubjectBases { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -52,6 +54,11 @@ namespace EducationForum.DataAccess
             {
                 entity.HasKey(e => e.BoardID);
                 entity.ToTable("Boards", "EForumMaster");
+            });
+            modelBuilder.Entity<MasterTopics>(entity =>
+            {
+                entity.HasKey(e => e.TopicsID);
+                entity.ToTable("Topics", "EForumMaster");
             });
             modelBuilder.Entity<User>(entity =>
             {
@@ -79,8 +86,17 @@ namespace EducationForum.DataAccess
             });
 
 
-            modelBuilder.Entity<Subjects>().ToTable("Subjects", "EForumMaster");
+            modelBuilder.Entity<Subjects>(entity =>
+            {
+                entity.HasKey(e => e.SubjectID);
+                entity.ToTable("Subjects", "EForumMaster");
+
+                entity.HasOne(e => e.MasterSubjectBase).WithOne(e => e.Subject)
+                .HasForeignKey<Subjects>(e => e.SubjectBaseID)
+                .HasConstraintName("FK_MasterSubjectBase_SubjectBaseID").OnDelete(DeleteBehavior.Restrict);
+            });
             modelBuilder.Entity<Grades>().ToTable("Grade", "EForumMaster");
+            modelBuilder.Entity<MasterSubjectBase>().ToTable("SubjectBase", "EForumMaster");
             modelBuilder.Entity<ClassTypes>().ToTable("ClassType", "EForumMaster");
             modelBuilder.Entity<StudentEnquiry>(entity =>
             {
@@ -102,6 +118,10 @@ namespace EducationForum.DataAccess
                 entity.HasOne(e => e.Boards).WithOne(e => e.Enquiry)
                 .HasForeignKey<StudentEnquiry>(e => e.BoardID)
                 .HasConstraintName("FK_StudentEnquiry_BoardID").OnDelete(DeleteBehavior.Restrict);
+
+                entity.HasOne(e=>e.Topic).WithOne(e=>e.StudentEnquiry)
+                .HasForeignKey<StudentEnquiry>(e=>e.TopicsID)
+                .HasConstraintName("FK_StudentEnquiry_TopicsID").OnDelete(DeleteBehavior.Restrict);
             });
             modelBuilder.Entity<StudentEnquiryGradeSubjectMap>(entity =>
             {

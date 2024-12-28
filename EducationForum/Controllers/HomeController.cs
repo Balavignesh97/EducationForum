@@ -55,6 +55,7 @@ namespace EducationForum.Controllers
             studentEnquiry.BoardID = Convert.ToInt16(obj.boardID);
             studentEnquiry.EnquirerNote = obj.message;
             studentEnquiry.InstructiveLanguageID = Convert.ToInt16(obj.instructiveLanguage);
+            studentEnquiry.TopicsID = Convert.ToInt16(obj.topic);
             studentEnquiry.studentEnquiryGradeSubjectMaps = new List<StudentEnquiryGradeSubjectMap>{
                 new StudentEnquiryGradeSubjectMap()
                 {
@@ -89,11 +90,11 @@ namespace EducationForum.Controllers
             }
         }
         [HttpPost]
-        public async Task<ActionResult<List<Subjects>>> GetSubjects(short gradeID)
+        public async Task<ActionResult<List<Subjects>>> GetSubjects()
         {
             try
             {
-                var Subjects = await _contactservices.GetSubjectsByGrade(gradeID);
+                var Subjects = await _contactservices.GetSubjects();
                 return Json(Subjects);
             }
             catch
@@ -138,6 +139,32 @@ namespace EducationForum.Controllers
             catch
             {
                 return Json(new List<MasterInstructiveLanguage>());
+            }
+        }
+        [HttpGet]
+        public async Task<ActionResult<List<MasterTopics>>> GetTopics()
+        {
+            try
+            {
+                var topics = await _contactservices.GetTopics();
+                return Json(topics);
+            }
+            catch
+            {
+                return Json(new List<MasterInstructiveLanguage>());
+            }
+        }
+        [HttpPost]
+        public async Task<ActionResult<string>> GetBaseForSubject(short SubjectID)
+        {
+            try
+            {
+                var Subjects = await _contactservices.GetBaseForSubject(SubjectID);
+                return Json(Subjects);
+            }
+            catch
+            {
+                return Json(new List<Subjects>());
             }
         }
         public IActionResult Privacy()

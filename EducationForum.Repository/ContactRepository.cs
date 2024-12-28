@@ -21,7 +21,7 @@ namespace EducationForum.Repository
         {
             try
             {
-                var result = await _dbContext.Subjects.ToListAsync();
+                var result = await _dbContext.Subjects.Where(s => s.IsActive == true).ToListAsync();
                 return result;
             }
             catch (Exception ex)
@@ -33,7 +33,7 @@ namespace EducationForum.Repository
         {
             try
             {
-                var result = await _dbContext.Grades.ToListAsync();
+                var result = await _dbContext.Grades.Where(g => g.IsActive == true).ToListAsync();
                 return result;
             }
             catch (Exception ex)
@@ -45,7 +45,7 @@ namespace EducationForum.Repository
         {
             try
             {
-                var result = await _dbContext.ClassTypes.ToListAsync();
+                var result = await _dbContext.ClassTypes.Where(ct => ct.IsActive == true).ToListAsync();
                 return result;
             }
             catch (Exception ex)
@@ -57,7 +57,19 @@ namespace EducationForum.Repository
         {
             try
             {
-                var result = await _dbContext.MasterInstructiveLanguages.ToListAsync();
+                var result = await _dbContext.MasterInstructiveLanguages.Where(l => l.IsActive == true).ToListAsync();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public async Task<List<MasterTopics>> GetTopics()
+        {
+            try
+            {
+                var result = await _dbContext.Topics.Where(t => t.IsActive == true).ToListAsync();
                 return result;
             }
             catch (Exception ex)
@@ -81,6 +93,19 @@ namespace EducationForum.Repository
                     subjects = result;
                 }
                 return subjects;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public async Task<string> GetBaseForSubject(short SubjectID)
+        {
+            try
+            {
+                var check = await _dbContext.MasterSubjectBases.ToListAsync();
+                var result = await _dbContext.Subjects.Where(s => s.IsActive == true && s.SubjectID == SubjectID).Include(e => e.MasterSubjectBase).FirstOrDefaultAsync();
+                return result?.MasterSubjectBase?.SubjectBase ?? "";
             }
             catch (Exception ex)
             {

@@ -16,6 +16,8 @@ namespace EducationForum.Domain
         public string SubjectName { get; set; }
         public bool IsActive { get; set; }
         public DateTime? DateAdded { get; set; }
+        public short SubjectBaseID { get; set; }
         public virtual ICollection<StudentEnquiryGradeSubjectMap>? StudentEnquiryGradeSubjectMaps { get; set; }
+        public virtual MasterSubjectBase? MasterSubjectBase { get; set; }
     }
 }

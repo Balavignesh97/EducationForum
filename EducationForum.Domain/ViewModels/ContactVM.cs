@@ -11,6 +11,7 @@ namespace EducationForum.Domain.ViewModels
         public string subject { get; set; }
         public string choiceofclass { get; set; }
         public string boardID { get; set; }
+        public string topic { get; set; }
         public string state { get; set; }
         public string city { get; set; }
         public string instructiveLanguage { get; set; }

@@ -21,6 +21,7 @@ namespace EducationForum.Domain
         public string? City { get; set; }
         public short? ClassTypeID { get; set; }
         public short? BoardID { get; set; }
+        public short? TopicsID { get; set; }
         public short? InstructiveLanguageID { get; set; }
         public string? EnquirerNote { get; set; }
         public string? ResponderNote { get; set; }
@@ -33,6 +34,7 @@ namespace EducationForum.Domain
         public DateTime? DateAdded { get; set; }
         public virtual ClassTypes? ClassTypes { get; set; }
         public virtual MasterBoards? Boards { get; set; }
+        public virtual MasterTopics? Topic { get; set; }
         public MasterInstructiveLanguage? InstructiveLanguage { get; set; }
         public virtual ICollection<StudentEnquiryGradeSubjectMap>? studentEnquiryGradeSubjectMaps { get; set; }
     }

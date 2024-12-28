@@ -57,6 +57,17 @@ namespace EducationForum.Services
                 throw;
             }
         }
+        public async Task<List<MasterTopics>> GetTopics()
+        {
+            try
+            {
+                return await _contactRepository.GetTopics();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         public void SubmitEnquiry(StudentEnquiry studentenquiry)
         {
@@ -67,5 +78,11 @@ namespace EducationForum.Services
         {
             return await _contactRepository.GetSubjectsByGrade(gradeID);
         }
+        public async Task<string> GetBaseForSubject(short SubjectID)
+        {
+            return await _contactRepository.GetBaseForSubject(SubjectID);
+        }
+
+
     }
 }

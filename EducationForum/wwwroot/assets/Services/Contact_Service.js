@@ -1,10 +1,11 @@
 ﻿(function () {
-    $('#SubjectChoiseOfClassRow').hide();
-    BindGradeDD();
+    $('#ClassChoiseOfClassRow').hide();
+    $('#InstructiveLanguageDIV').hide();
     BindClassTypeDD();
     BindInstructiveLanguageDD();
+    BindSubject();
 })();
-
+var subjecttype=''
 function BindGradeDD() {
     $.ajax({
         type: 'GET',
@@ -16,16 +17,17 @@ function BindGradeDD() {
                 DDOptions += '<li data-value="' + response[i].gradeID + '" class="option">' + response[i].grade + '</li>';
             }
             $("#ClassDD").html(DDOptions);
+            $('#ClassChoiseOfClassRow').show();
         },
         async: true
     });
 
 }
-$(document).on('click', '#ClassDD .option', function () {
+function BindSubject() {
     $.ajax({
         type: 'POST',
         url: '/Home/GetSubjects',
-        data: { gradeID: $('#ClassDD .option.selected').data('value') },
+        //data: { gradeID: $('#ClassDD .option.selected').data('value') },
         dataType: 'json',
         success: function (response) {
             var DDOptions = ''
@@ -33,7 +35,30 @@ $(document).on('click', '#ClassDD .option', function () {
                 DDOptions += '<li data-value="' + response[i].subjectID + '" class="option">' + response[i].subjectName + '</li>';
             }
             $("#SubjectDD").html(DDOptions);
-            $('#SubjectChoiseOfClassRow').show();
+        },
+        async: true
+    });
+}
+$(document).on('click', '#SubjectDD .option', function () {
+    $.ajax({
+        type: 'POST',
+        url: '/Home/GetBaseForSubject',
+        data: { SubjectID: $('#SubjectDD .option.selected').data('value') },
+        dataType: 'json',
+        success: function (response) {
+            subjecttype = response.toLowerCase();
+            if (response.toLowerCase() === "classbased") {
+                $('#Topics').hide();
+                $('#Classes').show();
+                $('#InstructiveLanguageDIV').show();
+                BindGradeDD();
+            }
+            else if (response.toLowerCase() === "topicbased") {
+                $('#Classes').hide();
+                $('#Topics').show();
+                $('#InstructiveLanguageDIV').hide();
+                BindTopics();
+            }
         },
         async: true
     });
@@ -65,6 +90,23 @@ function BindInstructiveLanguageDD() {
                 DDOptions += '<li data-value="' + response[i].instructiveLanguageID + '" class="option">' + response[i].language + '</li>';
             }
             $("#InstructiveLanguageDD").html(DDOptions);
+        },
+        async: true
+    });
+
+}
+function BindTopics() {
+    $.ajax({
+        type: 'GET',
+        url: '/Home/GetTopics',
+        dataType: 'json',
+        success: function (response) {
+            var DDOptions = ''
+            for (var i = 0; i < response.length; i++) {
+                DDOptions += '<li data-value="' + response[i].topicsID + '" class="option">' + response[i].topics + '</li>';
+            }
+            $("#TopicsDD").html(DDOptions);
+            $('#ClassChoiseOfClassRow').show();
         },
         async: true
     });
@@ -105,6 +147,17 @@ document.addEventListener('DOMContentLoaded', function () {
             const selectedValue = event.target.getAttribute('data-value');
             $('#Class').val(selectedValue);
             Validatecheck('Class');
+        }
+    });
+    document.querySelector('.Topic').addEventListener('click', function (event) {
+        if (event.target && event.target.classList.contains('option')) {
+            const options = document.querySelectorAll('.Topic .option');
+            options.forEach(option => option.classList.remove('selected', 'focus'));
+            event.target.classList.add('selected', 'focus');
+
+            const selectedValue = event.target.getAttribute('data-value');
+            $('#Topic').val(selectedValue);
+            Validatecheck('Topic');
         }
     });
 
@@ -175,6 +228,12 @@ async function Validatecheck(Id = null) {
             Class1.toggleClass('error', !Class);
             Class1.toggleClass('noneerror', !!Class);
         }
+        else if (Id === 'Topic') {
+            var Class = $('#Topic').val();
+            var Class1 = $('.Topic');
+            Class1.toggleClass('error', !Class);
+            Class1.toggleClass('noneerror', !!Class);
+        }
         else if (Id === 'subject') {
             var subject = $('#subject').val();
             var subject1 = $('.subject');
@@ -199,10 +258,12 @@ async function Validatecheck(Id = null) {
     var email = $('#email');
     var Mobile = $('#Mobile');
     var Class = $('#Class').val();
+    var Topic = $('#Topic').val();
     var subject = $('#subject').val();
     var choiceofclass = $('#choiceofclass').val();
     var instructiveLanguage = $('#instructiveLanguage').val();
     var Class1 = $('.Class');
+    var Topic1 = $('.Topic');
     var subject1 = $('.subject');
     var choiceofclass1 = $('.choiceofclass');
     var instructiveLanguage1 = $('.instructiveLanguage');
@@ -216,6 +277,7 @@ async function Validatecheck(Id = null) {
     Mobile.toggleClass('error', !isValidPhone);
     message.toggleClass('error', !message.val());
     Class1.toggleClass('error', !Class);
+    Topic1.toggleClass('error', !Topic);
     subject1.toggleClass('error', !subject);
     choiceofclass1.toggleClass('error', !choiceofclass);
     instructiveLanguage1.toggleClass('error', !instructiveLanguage);
@@ -225,12 +287,18 @@ async function Validatecheck(Id = null) {
     Mobile.toggleClass('noneerror', isValidPhone);
     message.toggleClass('noneerror', !!message.val());
     Class1.toggleClass('noneerror', !!Class);
+    Topic1.toggleClass('noneerror', !!Topic);
     subject1.toggleClass('noneerror', !!subject);
     choiceofclass1.toggleClass('noneerror', !!choiceofclass);
     instructiveLanguage1.toggleClass('noneerror', !!instructiveLanguage);
 
-
-    return fullname.val() && isValidEmail && isValidPhone && message.val() && Class && subject && choiceofclass && instructiveLanguage;
+    if (subjecttype ==='classbased') {
+        return fullname.val() && isValidEmail && isValidPhone && message.val() && subject && choiceofclass && instructiveLanguage && Class;
+    }
+    else if (subjecttype ==='topicbased') {
+        return fullname.val() && isValidEmail && isValidPhone && message.val() && subject && choiceofclass && Topic;
+    }
+    return fullname.val() && isValidEmail && isValidPhone && message.val() && subject && choiceofclass && instructiveLanguage;
 }
 
 function validateEmail(email) {

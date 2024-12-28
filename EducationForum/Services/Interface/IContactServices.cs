@@ -9,6 +9,8 @@ namespace EducationForum.Services.Interface
         Task<List<ClassTypes>> GetClassTypes();
         Task<List<Subjects>> GetSubjectsByGrade(short gradeID);
         Task<List<MasterInstructiveLanguage>> GetInstructiveLanguage();
-        public void SubmitEnquiry(StudentEnquiry studentenquiry);
+        void SubmitEnquiry(StudentEnquiry studentenquiry);
+        Task<List<MasterTopics>> GetTopics();
+        Task<string> GetBaseForSubject(short SubjectID);
     }
 }

@@ -16,5 +16,7 @@ namespace EducationForum.Repository.Interface
         Task<List<ClassTypes>> GetClassTypes();
         Task<List<Subjects>> GetSubjectsByGrade(short gradeID);
         Task<List<MasterInstructiveLanguage>> GetInstructiveLanguage();
+        Task<List<MasterTopics>> GetTopics();
+        Task<string> GetBaseForSubject(short SubjectID);
     }
 }
