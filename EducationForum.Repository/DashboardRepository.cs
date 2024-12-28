@@ -73,6 +73,10 @@ namespace EducationForum.Repository
                              from ct in ctgroup.DefaultIfEmpty()
                              join il in _dbContext.MasterInstructiveLanguages on se.InstructiveLanguageID equals il.InstructiveLanguageID into ilgroup
                              from il in ilgroup.DefaultIfEmpty()
+                             join b in _dbContext.Boards on se.BoardID equals b.BoardID into bgroup
+                             from b in bgroup.DefaultIfEmpty()
+                             join t in _dbContext.Topics on se.TopicsID equals t.TopicsID into tgroup
+                             from t in tgroup.DefaultIfEmpty()
                              select new
                              {
                                  se,
@@ -80,7 +84,9 @@ namespace EducationForum.Repository
                                  g,
                                  s,
                                  ct,
-                                 il
+                                 il,
+                                 b,
+                                 t
                              }).Where(e => e.se.EnquiryID == EnquiryID);
                 var result = await query.ToListAsync();
 
@@ -109,6 +115,14 @@ namespace EducationForum.Repository
                                 item.Grade.StudentEnquiryGradeSubjectMaps = null;
                             }
                         }
+                    }
+                    if (Enquiry.Boards != null)
+                    {
+                        Enquiry.Boards.Enquiry = null;
+                    }
+                    if (Enquiry.Topic != null)
+                    {
+                        Enquiry.Topic.StudentEnquiry = null;
                     }
 
                     return Enquiry;

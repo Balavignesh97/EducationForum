@@ -388,6 +388,13 @@ function Closepopup() {
     $('#name').val('');
     $('#email').val('');
     $('#phone').val('');
+    $('#City').val('');
+    $('#State').val('');
+    $('#enquirerNote').val('');
+    $('#Subject').val('');
+    $('#Grade').val('');
+    $('#Topic').val('');
+    $('#Board').val('');
     $('#classType').val('');
     $('#instructiveLanguage').val('');
     $('#IsResponded').prop('checked', false);
@@ -460,6 +467,15 @@ async function GetEnquiryByID(EnquiryID) {
                     $('#name').val(result.name);
                     $('#email').val(result.email);
                     $('#phone').val(result.phone);
+                    $('#City').val(result.city);
+                    $('#State').val(result.state);
+                    $('#enquirerNote').val(result.enquirerNote);
+                    if (result.studentEnquiryGradeSubjectMaps != null && result.studentEnquiryGradeSubjectMaps.length > 0 && result.studentEnquiryGradeSubjectMaps[0].subject != null) {
+                        $('#Subject').val(result.studentEnquiryGradeSubjectMaps[0].subject.subjectName);
+                    }
+                    if (result.studentEnquiryGradeSubjectMaps != null && result.studentEnquiryGradeSubjectMaps.length > 0 && result.studentEnquiryGradeSubjectMaps[0].grade != null) {
+                        $('#Grade').val(result.studentEnquiryGradeSubjectMaps[0].grade.grade);
+                    }
                     if (result.classTypes != null) {
                         $('#classType').val(result.classTypes.classType);
                     }
@@ -467,7 +483,12 @@ async function GetEnquiryByID(EnquiryID) {
                     if (result.instructiveLanguage != null) {
                         $('#instructiveLanguage').val(result.instructiveLanguage.language);
                     }
-
+                    if (result.topic != null) {
+                        $('#Topic').val(result.topic.topics + result.topic.description);
+                    }
+                    if (result.boards != null) {
+                        $('#Board').val(result.boards.board);
+                    }
 
                     $('#IsResponded').prop('checked', result.isResponded);
                     $('#RespondeDate').html(' (' + moment(result.respondedOn).format('DD/MM/YYYY HH:mm') + ')');
