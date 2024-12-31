@@ -10,5 +10,7 @@ namespace EducationForum.Repository.Interface
     public interface IUserRepository
     {
         Task<User> GetUserByID(int id);
+        Task<User> AddUser(User user);
+        Task<List<MasterUserType>> GetUserType();
     }
 }

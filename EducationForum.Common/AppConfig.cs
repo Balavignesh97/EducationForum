@@ -7,5 +7,6 @@
     public static class SP
     {
         public static string GetStudentEnquiryQueue { get; } = "[SP].[GetStudentEnquiryQueue]";
+        public static string AddORUpdateUser { get; } = "[SP].[AddORUpdateUser]";
     }
 }

@@ -1,6 +1,7 @@
 ﻿using EducationForum.Domain;
 using EducationForum.Repository.Interface;
 using EducationForum.Services.Interface;
+using Microsoft.EntityFrameworkCore;
 
 namespace EducationForum.Services
 {
@@ -16,6 +17,28 @@ namespace EducationForum.Services
             try
             {
                 return await _userRepository.GetUserByID(ID);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public async Task<User> AddUser(User user)
+        {
+            try
+            {
+                return await _userRepository.AddUser(user);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public async Task<List<MasterUserType>> GetUserType()
+        {
+            try
+            {
+                return await _userRepository.GetUserType();
             }
             catch (Exception ex)
             {

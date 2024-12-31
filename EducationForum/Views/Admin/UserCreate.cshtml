@@ -66,6 +66,13 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
+                    <label>User Type</label>
+                    <select class="form-control" id="UserTypeDD" name="UserTypeDD" placeholder="Select User Type" required>
+                        <option>Loading...</option>
+                    </select>
+                    <p id="match-error" style="color:red;"></p>
+                </div>
+               @*  <div class="col-sm-4">
                     <label>User Profile</label>
                     <input type="file" id="Image" accept="image/*">
                     <input type="hidden" name="ImageName" id="ImageName" />
@@ -73,7 +80,7 @@
                 </div>
                 <div class="col-sm-4">
                     <img id="Document-preview" class="img-thumbnail" style="display:none;width:25%;">
-                </div>
+                </div> *@
             </div>
 
             <div class="input-box address">
@@ -92,7 +99,10 @@
 
 
             <button id="usersubmit" type="button">
-                <span>Create</span>
+                <div class="spinner-border spinner-border-sm" role="status" id="usersubmitSpinner">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <span>Submit</span>
             </button>
         </form>
     </section>

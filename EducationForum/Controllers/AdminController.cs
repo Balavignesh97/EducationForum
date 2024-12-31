@@ -14,9 +14,11 @@ namespace EducationForum.Controllers
     public class AdminController : Controller
     {
         public IDashboardServices _dashboardServices;
-        public AdminController(IDashboardServices dashboardServices)
+        public IUserServices _userServices;
+        public AdminController(IDashboardServices dashboardServices, IUserServices userServices)
         {
             _dashboardServices = dashboardServices;
+            _userServices = userServices;
         }
         public IActionResult Index()
         {
@@ -108,14 +110,14 @@ namespace EducationForum.Controllers
                 queue.Email = Email;
                 queue.Phone = Phone;
                 queue.IsResponded = IsResponded;
-                queue.RespondedOn = IsResponded?DateTime.Now:null;
+                queue.RespondedOn = IsResponded ? DateTime.Now : null;
                 queue.IsOnHold = IsOnHold;
                 queue.IsRequestCallBack = IsRequestCallBack;
                 queue.CallBackDate = IsRequestCallBack ? Convert.ToDateTime(RequestCallBackDate) : null;
                 queue.IsCallAttemptFailed = IsCallAttemptFailed;
                 queue.ResponderNote = ResponderNote;
                 var result = await _dashboardServices.UpdateEnquiryQueue(queue);
-                if (result != null && result.EnquiryID>0)
+                if (result != null && result.EnquiryID > 0)
                 {
                     message.ErrorType = "toster";
                     message.Status = "success";
@@ -142,11 +144,60 @@ namespace EducationForum.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public async Task<ActionResult<List<MasterUserType>>> GetUserType()
+        {
+            try
+            {
+                return await _userServices.GetUserType();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
         [HttpPost]
-        public void UserCreate(User obj)
+        public async Task<IActionResult> UserCreate(UserVM obj)
         {
-            
+            DataCreationReturnMessage message = new DataCreationReturnMessage();
+            try
+            {
+                User user = new User()
+                {
+                    UserType = obj.UserTypeDD,
+                    Email = obj.Email,
+                    FirstName = obj.FirstName,
+                    ConfirmPassword = obj.ConfirmPassword,
+                    LastName = obj.LastName,
+                    Gender = obj.Gender,
+                    Address1 = obj.Address1,
+                    Address2 = obj.Address2,
+                    Phone = obj.Phone,
+                    State = obj.State,
+                    City = obj.city
+                };
+                User result = await _userServices.AddUser(user);
+                if (result != null && result.UserID > 0)
+                {
+                    message.ErrorType = "toster";
+                    message.Status = "success";
+                    message.ReturnMessage = "User Created Sucessfully";
+                    message.SpinnerID = "#usersubmitSpinner";
+                    message.ButtonID = "#usersubmit";
+                    return Json(message);
+                }
+                message.ErrorType = "toster";
+                message.Status = "error";
+                message.ReturnMessage = "Issue with User creation";
+                message.SpinnerID = "#usersubmitSpinner";
+                message.ButtonID = "#usersubmit";
+                return Json(message);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }

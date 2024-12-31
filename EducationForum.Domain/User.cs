@@ -19,7 +19,7 @@ namespace EducationForum.Domain
         public string? Address1 { get; set; }
         public string? Address2 { get; set; }
         public string? Phone { get; set; }
-        public short? State { get; set; }
+        public string? State { get; set; }
         public string? City { get; set; }
         public bool? IsActive { get; set; }
         public DateTime? DeactivatedDate { get; set; }
@@ -34,9 +34,6 @@ namespace EducationForum.Domain
         public DateTime? DateUpdated { get; set; }
         public int? LoginAttemptCount { get; set; }
         public bool? IsTwoFactorAuthentication { get; set; }
-
-        [NotMapped]
-        public string? ImageName { get; set; } = string.Empty;
         [NotMapped]
         public string? ConfirmPassword { get; set; } = string.Empty;
     }
