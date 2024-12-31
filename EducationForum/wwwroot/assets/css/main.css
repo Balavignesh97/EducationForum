@@ -2505,7 +2505,7 @@ START: Header CSS
 }
 @media (max-width: 1200px) {
   .header .primary-header-inner .header-logo img {
-    max-width: 160px;
+    max-width: 100px;
   }
 }
 .header .primary-header-inner .header-menu-wrap {
@@ -3359,7 +3359,7 @@ START: Header CSS
     margin-bottom: 60px;
   }
   .mobile-side-menu .side-menu-head a img {
-    max-width: 150px;
+    max-width: 110px;
   }
   .mobile-side-menu .side-menu-head .mobile-side-menu-close {
     position: fixed;
