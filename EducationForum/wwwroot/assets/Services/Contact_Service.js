@@ -1,4 +1,6 @@
-﻿(function () {
+﻿const urlParams = new URLSearchParams(window.location.search);
+const paramValue = urlParams.get('subjectId');
+(function () {
     $('#ClassChoiseOfClassRow').hide();
     $('#InstructiveLanguageDIV').hide();
     $('#BoardsDIV').hide();
@@ -6,7 +8,8 @@
     //BindInstructiveLanguageDD();
     BindSubject();
 })();
-var subjecttype=''
+var subjecttype = ''
+
 function BindGradeDD() {
     $.ajax({
         type: 'GET',
@@ -36,11 +39,27 @@ function BindSubject() {
                 DDOptions += '<li data-value="' + response[i].subjectID + '" class="option">' + response[i].subjectName + '</li>';
             }
             $("#SubjectDD").html(DDOptions);
+            if (paramValue !== null) {
+                const selectedOption = $(`#SubjectDD .option[data-value='${paramValue}']`);
+                if (selectedOption.length) {
+                    // Update the selected and focus classes
+                    $("#SubjectDD .option").removeClass("selected focus");
+                    selectedOption.addClass("selected focus");
+
+                    // Update the visible current value
+                    $(".subject .current").text(selectedOption.text());
+                }
+                console.log('Value')
+                console.log($('#SubjectDD .option.selected').data('value'))
+                OnAfterSubjectSelect()
+
+            }
         },
         async: true
     });
 }
-$(document).on('click', '#SubjectDD .option', function () {
+
+function OnAfterSubjectSelect() {
     $.ajax({
         type: 'POST',
         url: '/Home/GetBaseForSubject',
@@ -67,6 +86,9 @@ $(document).on('click', '#SubjectDD .option', function () {
         },
         async: true
     });
+}
+$(document).on('click', '#SubjectDD .option', function () {
+    OnAfterSubjectSelect()
 });
 function BindClassTypeDD() {
     $.ajax({
