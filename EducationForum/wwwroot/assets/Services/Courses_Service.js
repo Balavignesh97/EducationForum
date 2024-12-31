@@ -55,7 +55,7 @@ function BindCourseDetails() {
                         <div class="course-item wow fade-in-bottom" data-wow-delay="200ms">
                             <div class="course-thumb-wrap">
                                 <div class="course-thumb">
-                                    <img src="/assets/img/Courses/` + prop['imagePath'] + `" alt="` + prop['courseHeading'] + `" loading="lazy">
+                                    <img src="/assets/img/Courses/` + prop['imagePath'] + `?v=1" alt="` + prop['courseHeading'] + `" loading="lazy">
                                 </div>
                             </div>
                             <div class="course-content">
