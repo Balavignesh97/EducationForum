@@ -21,7 +21,7 @@ namespace EducationForum.Repository
         {
             try
             {
-                var result= await _dbContext.TemplateCourses.ToListAsync();
+                var result= await _dbContext.TemplateCourses.Where(c=>c.IsActive==true).ToListAsync();
                 return result;
             }
             catch (Exception ex)
