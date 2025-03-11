@@ -24,10 +24,10 @@ namespace EducationForum.Controllers
         {
             return View();
         }
-        public IActionResult Courses()
-        {
-            return View();
-        }
+        //public IActionResult Courses()
+        //{
+        //    return View();
+        //}
         public IActionResult CourseDetails()
         {
             return View();

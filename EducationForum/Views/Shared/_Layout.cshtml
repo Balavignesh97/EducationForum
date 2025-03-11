@@ -5,9 +5,14 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
+    <meta name="description" content="Princeton Learners Forum offers online tuition across Tamil Nadu, India, led by Mr. G. Princeton Lazarus, an experienced HOD in a college. Specializing in ICSE, CBSE, IGCSE board syllabi, and subjects like mathematics, physics, chemistry, and English.">
+    <meta name="keywords" content="online tuition Tamil Nadu, tuition in Chennai, ICSE tuition, Indian Certificate of Secondary Education, CBSE tuition, Central Board of Secondary Education, IGCSE tuition, International General Certificate of Secondary Education, mathematics tuition, physics tuition, chemistry tuition, English tuition, Mr. G. Princeton Lazarus, online tutoring Tamil Nadu">
+
 
     <!-- Site Title -->
-    <title>Princeton Learners Forum</title>
+    @* <title>Princeton Learners Forum</title> *@
+    <title>Online Tuition in Tamil Nadu | ICSE, CBSE & IGCSE by Mr. G. Princeton Lazarus</title>
+
 
     <!-- Place favicon.ico in the root directory -->
     <link rel="shortcut icon" type="image/x-icon" href="~/assets/img/logo/logo-6.png">
@@ -29,7 +34,14 @@
     <script src="~/assets/js/toastr.min.js"></script>
     <script src="~/assets/js/sweetalert2@11.js"></script>
     
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KB0BRC36FQ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
+        gtag('config', 'G-KB0BRC36FQ');
+    </script>
     @* <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script> *@
     <style>
         .header-2 .primary-header-inner .header-right-wrap .header-menu-wrap .sub-menu .menu-item-has-children:after {
@@ -74,14 +86,14 @@
                     <div class="top-bar-left">
                         <ul class="top-bar-list">
                             <li>
-                                <i class="fab fa-whatsapp"></i><a href="https://wa.me/918122097882">
+                                <i class="fab fa-whatsapp"></i><a href="https://wa.me/918122097882" itemprop="telephone">
                                     +91 812 209 7882, 
-                                </a><a href="https://wa.me/919942526210">
+                                </a><a href="https://wa.me/919942526210" itemprop="telephone">
                                     +91 994 252 6210
                                 </a>
                             </li>
                             <li>
-                                <i class="fa-regular fa-location-dot"></i><span>
+                                <i class="fa-regular fa-location-dot"></i><span itemprop="address">
                                     Millerpuram, Thoothukudi - 628008
                                     , India
                                 </span>
@@ -141,13 +153,13 @@
                                         <li><a href="error-page.html">404 Error</a></li>
                                         </ul>  *@
                                     </li>
-                                    <li class="menu-item-has-children">
-                                        <a asp-controller="Home" asp-action="Courses">Courses</a>
+                                    @* <li class="menu-item-has-children">
+                                        <a asp-controller="Home" asp-action="Courses">Courses</a> *@
                                         @*  <ul>
                                         <li><a href="course.html">Course</a></li>
                                         <li><a href="course-details.html">Course Details</a></li>
                                         </ul> *@
-                                    </li>
+                                    @* </li> *@
                                     @* <li class="menu-item-has-children">
                                     <a href="shop.html">Shop</a>
                                     <ul>
@@ -285,17 +297,17 @@
                             @* <p class="mb-30">Fusce varius, dolor tempor interdum tristiquei bibendum.</p> *@
                             <div class="footer-contact" style="width:max-content">
                                 <div class="number">
-                                    <i class="fab fa-whatsapp"></i><a href="https://wa.me/918122097882">+91 812 209 7882 </a>
+                                    <i class="fab fa-whatsapp"></i><a href="https://wa.me/918122097882" itemprop="telephone">+91 812 209 7882 </a>
                                 </div>
                                 <div class="number">
                                     <i class="fab fa-whatsapp"></i>
-                                    <a href="https://wa.me/919942526210">
+                                    <a href="https://wa.me/919942526210" itemprop="telephone">
                                         +91 994 252 6210
                                     </a>
                                 </div>
                                 <div class="number">
                                     <i class="fa fa-envelope" style="font-size:16px"></i>
-                                    <a href="mailto:princetonlearnersforum@gmail.com" class="mail">
+                                    <a href="mailto:princetonlearnersforum@gmail.com" class="mail" itemprop="email">
                                         princetonlearnersforum@gmail.com
                                     </a>
                                 </div>
